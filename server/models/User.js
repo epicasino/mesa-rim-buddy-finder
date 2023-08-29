@@ -1,0 +1,60 @@
+const { Schema, model } = require('mongoose');
+
+const availabilitySchema = require('./Availability');
+const bcrypt = require('bcrypt');
+
+const userSchema = new Schema({
+  username: {
+    type: String,
+    required: true
+    unique: true,
+  },
+  pronouns: {
+    type: String,
+  }
+  email: {
+    type: String,
+    unique: true,
+    match: [/.+@.+\..+/, 'Must use a valid email address'],
+  },
+  phone: {
+    type: String,
+    unique: true,
+    match: [/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/, 'Must use a valid phone!'],
+  },
+  password: {
+    type: String,
+    required: true,
+    min: 8
+  },
+  locations: {
+    type: [String],
+    enum: ['Mira Mesa', 'Mission Valley', 'North City', 'Reno', 'Austin']
+  },
+  topRope: {
+    type: Boolean,
+  },
+  leadClimb: {
+    type: Boolean,
+  },
+  availability: {
+    type: availabilitySchema
+  }
+});
+
+userSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+  
+  next();
+});
+
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
+const User = model('User', userSchema);
+
+module.exports = User;
