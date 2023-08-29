@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const availabilitySchema = require('./Availability');
+const weeklySchema = require('./Availability');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
@@ -38,7 +38,7 @@ const userSchema = new Schema({
     type: Boolean,
   },
   availability: {
-    type: availabilitySchema
+    type: weeklySchema
   }
 });
 

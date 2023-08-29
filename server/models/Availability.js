@@ -1,28 +1,28 @@
 const { Schema } = require('mongoose');
 
-const availabilitySchema = new Schema({
+const weeklySchema = new Schema({
   sunday: {
-    type: dayAvailableSchema,
+    type: dailySchema,
     required: true,
   },
   monday: {
-    type: dayAvailableSchema,
+    type: dailySchema,
     required: true,
   },
   tuesday: {
-    type: dayAvailableSchema,
+    type: dailySchema,
     required: true,
   },
   wednesday: {
-    type: dayAvailableSchema,
+    type: dailySchema,
     required: true,
   },
   thursday: {
-    type: dayAvailableSchema,
+    type: dailySchema,
     required: true,
   },
   friday: {
-    type: dayAvailableSchema,
+    type: dailySchema,
     required: true,
   },
   saturday: {
@@ -31,7 +31,7 @@ const availabilitySchema = new Schema({
   },
 });
 
-const dayAvailableSchema = new Schema({
+const dailySchema = new Schema({
   from: {
     type: String,
   },
@@ -43,4 +43,4 @@ const dayAvailableSchema = new Schema({
   },
 });
 
-module.exports = availabilitySchema;
+module.exports = weeklySchema;
