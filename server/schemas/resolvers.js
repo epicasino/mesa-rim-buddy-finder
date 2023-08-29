@@ -18,4 +18,40 @@ const resolvers = {
       return await User.find({}).select('-__v -password');
     },
   },
+  Mutation: {
+    login: async (parent, { username, password }, context) => {
+      if (context.user) {
+        const user = await User.findOne({ username });
+
+        if (!user) {
+          throw AuthenticationError;
+        }
+
+        const correctPass = await user.isCorrectPass(password);
+
+        if (!correctPass) {
+          throw AuthenticationError;
+        }
+
+        const token = signToken(user);
+        return { token, user };
+      }
+    },
+    register: async (parent, { registerInput }, context) => {
+      const user = await User.create({
+        ...registerInput,
+      });
+
+      const token = signToken(user);
+
+      return { user, token };
+    },
+    removeUser: async (parent, { userId }) => {
+      const user = await User.findByIdAndDelete(userId);
+
+      if (user) {
+        return user;
+      }
+    },
+  },
 };
