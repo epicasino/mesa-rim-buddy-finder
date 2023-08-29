@@ -1,5 +1,17 @@
 const { Schema } = require('mongoose');
 
+const dailySchema = new Schema({
+  from: {
+    type: String,
+  },
+  to: {
+    type: String,
+  },
+  unavailable: {
+    type: Boolean,
+  },
+});
+
 const weeklySchema = new Schema({
   sunday: {
     type: dailySchema,
@@ -26,20 +38,8 @@ const weeklySchema = new Schema({
     required: true,
   },
   saturday: {
-    type: dayAvailableSchema,
+    type: dailySchema,
     required: true,
-  },
-});
-
-const dailySchema = new Schema({
-  from: {
-    type: String,
-  },
-  to: {
-    type: String,
-  },
-  unavailable: {
-    type: Boolean,
   },
 });
 
