@@ -13,9 +13,14 @@ const typeDefs = `
     availability: Availability
   }
   input UserInput {
-    username: String!
-    name: String!
-    password: String!
+    userId: String
+    pronouns: String
+    email: String
+    phone: String
+    locations: [String]
+    topRope: Boolean
+    leadClimb: Boolean
+    availability: AvailabilityInput
   }
   type Availability {
     sunday: DailyAvailable
@@ -55,8 +60,9 @@ const typeDefs = `
   }
   type Mutation {
     login(username: String!, password: String!): Auth
-    register(userInfo: UserInput!): Auth
+    register(username: String!, password: String!, name: String!): Auth
     removeUser(userId: String!): User
+    addInfo(userInfo: UserInput): User
   }
 `;
 

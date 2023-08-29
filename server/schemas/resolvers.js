@@ -20,28 +20,26 @@ const resolvers = {
   },
   Mutation: {
     login: async (parent, { username, password }, context) => {
-      if (context.user) {
-        const user = await User.findOne({ username });
+      const user = await User.findOne({ username });
 
-        if (!user) {
-          throw AuthenticationError;
-        }
-
-        const correctPass = await user.isCorrectPass(password);
-
-        if (!correctPass) {
-          throw AuthenticationError;
-        }
-
-        const token = signToken(user);
-        return { token, user };
+      if (!user) {
+        throw AuthenticationError;
       }
+
+      const correctPass = await user.isCorrectPassword(password);
+
+      if (!correctPass) {
+        throw AuthenticationError;
+      }
+
+      const token = signToken(user);
+      return { token, user };
     },
-    register: async (parent, { userInfo }, context) => {
+    register: async (parent, { username, password, name }, context) => {
       const user = await User.create({
-        username: userInfo.username,
-        name: userInfo.name,
-        password: userInfo.password,
+        username,
+        name,
+        password,
       });
 
       const token = signToken(user);
@@ -54,6 +52,34 @@ const resolvers = {
       if (user) {
         return user;
       }
+    },
+    addInfo: async (parent, { userInfo }, context) => {
+      console.log({ ...userInfo });
+
+      if (context.user) {
+        try {
+          const addedInfo = await User.findByIdAndUpdate(context.user._id, {
+            $addToSet: {
+              ...userInfo,
+            },
+          });
+
+          return addedInfo;
+        } catch (err) {
+          console.error(err);
+        }
+      } else if (userInfo.userId) {
+        const addedInfo = await User.findByIdAndUpdate(
+          userInfo.userId,
+          {
+            ...userInfo,
+          },
+          { new: true }
+        );
+        return addedInfo;
+      }
+
+      throw AuthenticationError;
     },
   },
 };
