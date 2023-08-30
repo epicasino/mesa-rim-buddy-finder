@@ -68,6 +68,7 @@ const resolvers = {
         } catch (err) {
           console.error(err);
         }
+        // else if as a fallback- will remove later once front-end is established
       } else if (userInfo.userId) {
         const addedInfo = await User.findByIdAndUpdate(
           userInfo.userId,
