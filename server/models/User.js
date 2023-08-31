@@ -1,17 +1,21 @@
 const { Schema, model } = require('mongoose');
 
-const availabilitySchema = require('./Availability');
+const weeklySchema = require('./Availability');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
   username: {
     type: String,
-    required: true
+    required: true,
     unique: true,
+  },
+  name: {
+    type: String,
+    required: true,
   },
   pronouns: {
     type: String,
-  }
+  },
   email: {
     type: String,
     unique: true,
@@ -20,16 +24,19 @@ const userSchema = new Schema({
   phone: {
     type: String,
     unique: true,
-    match: [/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/, 'Must use a valid phone!'],
+    match: [
+      /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/,
+      'Must use a valid phone!',
+    ],
   },
   password: {
     type: String,
     required: true,
-    min: 8
+    min: 8,
   },
   locations: {
     type: [String],
-    enum: ['Mira Mesa', 'Mission Valley', 'North City', 'Reno', 'Austin']
+    enum: ['Mira Mesa', 'Mission Valley', 'North City', 'Reno', 'Austin'],
   },
   topRope: {
     type: Boolean,
@@ -38,8 +45,8 @@ const userSchema = new Schema({
     type: Boolean,
   },
   availability: {
-    type: availabilitySchema
-  }
+    type: weeklySchema,
+  },
 });
 
 userSchema.pre('save', async function (next) {
@@ -47,7 +54,7 @@ userSchema.pre('save', async function (next) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
-  
+
   next();
 });
 
