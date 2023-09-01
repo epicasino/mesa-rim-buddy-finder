@@ -19,6 +19,9 @@ export default {
           900: '#00161d',
         },
       },
+      backgroundImage: {
+        homePage: "url('./assets/images/pexels_riccardo.jpg')",
+      },
     },
   },
   plugins: [],

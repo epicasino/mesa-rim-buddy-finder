@@ -1,6 +1,8 @@
-
 export default function Home() {
+
   return (
-    <div>Home</div>
-  )
+    <main className="bg-homePage bg-cover h-screen w-auto">
+      <></>
+    </main>
+  );
 }
