@@ -20,7 +20,8 @@ export default {
         },
       },
       backgroundImage: {
-        homePage: "url('./assets/images/pexels_riccardo.jpg')",
+        homePage: `url('./assets/images/pexels_riccardo.jpg')`,
+        formPage: `url('./assets/images/pexels_vladimir.png')`,
       },
     },
   },
