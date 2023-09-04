@@ -8,11 +8,19 @@ interface iUserData {
   password: string;
 }
 
-export interface iRegisterProps {
+export interface iRegisterHeaderProps {
   fade: boolean;
   setFade: Dispatch<SetStateAction<boolean>>;
-  setShowReg?: Dispatch<SetStateAction<boolean>>;
+  setShowReg: Dispatch<SetStateAction<boolean>>;
   setQuestion: Dispatch<SetStateAction<number>>;
-  userData?: iUserData;
-  setUserData?: Dispatch<SetStateAction<iUserData>>;
+}
+
+export interface iRegisterFormProps {
+  fade: boolean;
+  setFade: Dispatch<SetStateAction<boolean>>;
+  setShowReg: Dispatch<SetStateAction<boolean>>;
+  question: number;
+  setQuestion: Dispatch<SetStateAction<number>>;
+  userData: iUserData;
+  setUserData: Dispatch<SetStateAction<iUserData>>;
 }

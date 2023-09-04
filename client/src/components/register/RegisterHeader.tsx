@@ -1,11 +1,11 @@
-import { iRegisterProps } from './types';
+import { iRegisterHeaderProps } from './types';
 
 export default function RegisterHeader({
   fade,
   setFade,
   setShowReg,
   setQuestion,
-}: iRegisterProps) {
+}: iRegisterHeaderProps) {
   return (
     <header
       className={`flex flex-col gap-5 items-center ${
@@ -20,6 +20,7 @@ export default function RegisterHeader({
           setTimeout(() => {
             setShowReg(true);
             setQuestion(1);
+            setFade(false);
           }, 1000);
         }}
         className={`text-2xl bg-blue-600 hover:bg-blue-500
