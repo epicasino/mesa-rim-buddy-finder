@@ -24,3 +24,16 @@ export interface iRegisterFormProps {
   userData: iUserData;
   setUserData: Dispatch<SetStateAction<iUserData>>;
 }
+
+export interface iRegisterQuestionProps {
+  title: string;
+  description: string;
+  placeholder: string;
+  question: number;
+  userData: iUserData;
+  userDataObject: string;
+  setUserData: Dispatch<SetStateAction<iUserData>>;
+  nextQuestion: (e: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  lastQuestion: () => void;
+  minLength: number;
+}
