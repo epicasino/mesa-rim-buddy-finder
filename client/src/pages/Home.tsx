@@ -1,4 +1,4 @@
-import RegisterForm from "../components/form/RegisterForm";
+import RegisterFormSection from "../components/register/RegisterFormSection";
 
 
 export default function Home() {
@@ -15,7 +15,7 @@ export default function Home() {
         </a>
       </section>
       <section className="bg-formPage bg-cover h-[110vh] w-auto flex justify-center items-center">
-        <RegisterForm />
+        <RegisterFormSection />
       </section>
     </main>
   );

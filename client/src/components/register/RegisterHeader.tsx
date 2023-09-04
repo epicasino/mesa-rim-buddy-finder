@@ -1,19 +1,11 @@
-// Types
-import { Dispatch, SetStateAction } from 'react';
-
-type Props = {
-  fade: boolean;
-  setFade: Dispatch<SetStateAction<boolean>>;
-  setShowReg: Dispatch<SetStateAction<boolean>>;
-  setQuestion: Dispatch<SetStateAction<number>>;
-};
+import { iRegisterProps } from './types';
 
 export default function RegisterHeader({
   fade,
   setFade,
   setShowReg,
   setQuestion,
-}: Props) {
+}: iRegisterProps) {
   return (
     <header
       className={`flex flex-col gap-5 items-center ${

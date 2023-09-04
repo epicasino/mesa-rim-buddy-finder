@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState} from 'react';
 import RegisterHeader from './RegisterHeader';
 
-export default function RegisterForm() {
+export default function RegisterFormSection() {
   const [showReg, setShowReg] = useState(false);
 
   const [fade, setFade] = useState(false);
