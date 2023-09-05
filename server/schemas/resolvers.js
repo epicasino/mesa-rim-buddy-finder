@@ -17,6 +17,9 @@ const resolvers = {
     users: async () => {
       return await User.find({}).select('-__v -password');
     },
+    user: async (parent, { username }, context) => {
+      return await User.findOne({ username });
+    },
   },
   Mutation: {
     login: async (parent, { username, password }, context) => {
