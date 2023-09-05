@@ -2,9 +2,6 @@ import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
 export default function Navbar() {
-  const logOut = () => {
-    Auth.logout();
-  };
 
   return (
     <nav className="top-0 h-[10vh] w-screen flex justify-between items-center px-3 bg-gunmetal-500">
@@ -19,7 +16,7 @@ export default function Navbar() {
           <button
             type="button"
             className="transition ease-in-out duration-300 text-neutral-50 hover:text-neutral-300 text-lg"
-            onClick={logOut}
+            onClick={Auth.logout}
           >
             Logout
           </button>
