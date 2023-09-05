@@ -15,11 +15,7 @@ export default function RegisterQuestions({
 }: iRegisterQuestionProps) {
   const [error, setError] = useState(false);
 
-  const dataCheck = (
-    e:
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const dataCheck = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (userDataObject === '' && question !== 5) return setError(true);
     if (userDataObject.length >= minLength) {
