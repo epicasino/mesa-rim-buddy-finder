@@ -1,7 +1,10 @@
+import LoginForm from "../components/login/LoginForm";
 
 
 export default function Login() {
   return (
-    <div>Login</div>
-  )
+    <section className="bg-homePage bg-cover h-[110vh] w-auto flex flex-col justify-evenly items-center">
+      <LoginForm />
+    </section>
+  );
 }
