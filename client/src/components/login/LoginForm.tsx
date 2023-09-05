@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { LOGIN_USER } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
-import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link'
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
@@ -39,7 +39,7 @@ export default function LoginForm() {
     >
       <header className="row-span-2">
         <h1>Got an account? Log In!</h1>
-        <Link to='/home/#register'><small className='text-black'>Need to Register Still? Click Here!</small></Link>
+        <HashLink to='/#register'><small className='text-black'>Need to Register Still? Click Here!</small></HashLink>
       </header>
       <div className="flex flex-col items-center row-span-2">
         <label htmlFor="username">Username</label>

@@ -20,7 +20,6 @@ export default function RegisterFormSection() {
   return (
     <section
       className="text-center  bg-slate-100 bg-opacity-50 w-[95vw] h-[95vh] flex flex-col justify-center items-center gap-10"
-      id="register"
     >
       {!showReg && (
         <RegisterHeader
