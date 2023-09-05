@@ -13,7 +13,7 @@ export default function RegisterQuestions({
   lastQuestion,
   minLength,
 }: iRegisterQuestionProps) {
-  const [error, setError] = useState(false);
+  const [userError, setError] = useState(false);
 
   const dataCheck = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -78,7 +78,7 @@ export default function RegisterQuestions({
         // }}
       />
 
-      {error && (
+      {userError && (
         <div>
           <h1>Error</h1>
         </div>

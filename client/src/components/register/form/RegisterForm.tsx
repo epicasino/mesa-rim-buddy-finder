@@ -1,6 +1,9 @@
 import { iRegisterFormProps } from '../types';
 import RegisterConfirm from './RegisterConfirm';
 import RegisterQuestions from './RegisterQuestions';
+import { REGISTER_USER, ADD_INFO } from '../../../utils/mutations';
+import { useMutation } from '@apollo/client';
+import Auth from '../../../utils/auth';
 
 export default function RegisterForm({
   userData,
@@ -10,9 +13,28 @@ export default function RegisterForm({
   setQuestion,
   question,
 }: iRegisterFormProps) {
-  const submitForm = (e: React.FormEvent<HTMLButtonElement>) => {
+  const [registerUser, { error }] = useMutation(REGISTER_USER);
+
+  if (error) {
+    console.error(error);
+  }
+
+  const submitForm = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log(userData);
+    try {
+      const { data } = await registerUser({
+        variables: {
+          username: userData.username,
+          name: userData.name,
+          password: userData.password,
+        },
+      });
+      console.log(data);
+      Auth.login(data.register.token);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const nextQuestion = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
