@@ -90,6 +90,22 @@ export default function RegisterForm({
             minLength={8}
           />
         )}
+
+        {/* Question: Phone */}
+        { question === 4 && (
+          <RegisterQuestions 
+            title={`Now, a phone number...`}
+            description={`Just so your fellow climbers can contact you :)`}
+            placeholder={`###`}
+            userData={userData}
+            userDataObject={userData.phone}
+            setUserData={setUserData}
+            question={question}
+            nextQuestion={nextQuestion}
+            lastQuestion={lastQuestion}
+            minLength={10}
+          />
+        )}
       </div>
     </form>
   );

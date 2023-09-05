@@ -22,7 +22,7 @@ export default function RegisterQuestions({
       </label>
       <small>{description}</small>
       <input
-        type="input"
+        type={question === 3 ? 'password' : 'text'}
         className="w-1/4 text-4xl text-center m-5 rounded"
         placeholder={placeholder}
         value={userDataObject}
@@ -76,9 +76,10 @@ export default function RegisterQuestions({
               : ''
           }`}
           disabled={question <= 1 ? true : false}
+          // For some reason, when password check fails, if user fails it again, lastQuestion function will trigger, and will go back to the previous question.
           onClick={(e) => {
             e.preventDefault();
-            e.target.addEventListener('click', lastQuestion)
+            e.target.addEventListener('click', lastQuestion);
           }}
         >
           Prev
@@ -86,7 +87,17 @@ export default function RegisterQuestions({
         <button
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
           onClick={(e) => {
-            userDataObject.length >= minLength ? nextQuestion(e) : '';
+            if (userDataObject.length >= minLength) {
+              if (question === 3) {
+                console.log('hi');
+                const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+                if (!regex.test(userDataObject)) {
+                  setUserData({ ...userData, password: '' });
+                  setError(true);
+                } else nextQuestion(e);
+              }
+              nextQuestion(e);
+            } else setError(true);
           }}
         >
           Next
