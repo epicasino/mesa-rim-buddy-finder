@@ -10,7 +10,7 @@ export default function Home() {
           <h1 className="font-bold text-8xl text-center">GO CLIMB.</h1>
           <h5 className="text-center">Find your next climbing partner!</h5>
         </header>
-        <a href="#formSection">
+        <a href="#register">
           <img src="./assets/svg/arrow_down.svg" className="h-[10rem] w-[10rem] animate-bounce"/>
         </a>
       </section>
