@@ -8,7 +8,6 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id }).select(
           '-__v -password'
         );
-
         return userData;
       }
 
@@ -47,7 +46,7 @@ const resolvers = {
 
       const token = signToken(user);
 
-      return { user, token };
+      return { token, user };
     },
     removeUser: async (parent, { userId }) => {
       const user = await User.findByIdAndDelete(userId);
@@ -57,7 +56,7 @@ const resolvers = {
       }
     },
     addInfo: async (parent, { userInfo }, context) => {
-      console.log({ ...userInfo });
+      // console.log({ ...userInfo });
 
       if (context.user) {
         try {
