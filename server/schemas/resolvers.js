@@ -61,11 +61,13 @@ const resolvers = {
 
       if (context.user) {
         try {
-          const addedInfo = await User.findByIdAndUpdate(context.user._id, {
-            $addToSet: {
+          const addedInfo = await User.findByIdAndUpdate(
+            context.user._id,
+            {
               ...userInfo,
             },
-          });
+            { new: true }
+          );
 
           return addedInfo;
         } catch (err) {

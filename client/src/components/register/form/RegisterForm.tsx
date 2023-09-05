@@ -13,11 +13,8 @@ export default function RegisterForm({
   setQuestion,
   question,
 }: iRegisterFormProps) {
-  const [registerUser, { error }] = useMutation(REGISTER_USER);
-
-  if (error) {
-    console.error(error);
-  }
+  const [registerUser] = useMutation(REGISTER_USER);
+  const [addInfo] = useMutation(ADD_INFO);
 
   const submitForm = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -31,7 +28,22 @@ export default function RegisterForm({
         },
       });
       console.log(data);
-      Auth.login(data.register.token);
+
+      const addedInfo = await addInfo({
+        variables: {
+          userInfo: {
+            userId: data?.register?.user._id,
+            email: userData?.email,
+            phone: userData?.phone,
+          },
+        },
+      });
+
+      console.log(addedInfo);
+
+      if (data && addedInfo) {
+        Auth.login(data.register.token);
+      }
     } catch (error) {
       console.log(error);
     }

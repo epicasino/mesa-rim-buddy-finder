@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { iRegisterQuestionProps } from '../types';
-import { useLazyQuery } from '@apollo/client';
 import { QUERY_USER } from '../../../utils/queries';
+import { useLazyQuery } from '@apollo/client';
 
 export default function RegisterQuestions({
   title,
@@ -16,7 +16,7 @@ export default function RegisterQuestions({
   minLength,
 }: iRegisterQuestionProps) {
   const [userError, setError] = useState(false);
-  const [getUser, { data }] = useLazyQuery(QUERY_USER, {
+  const [getUser] = useLazyQuery(QUERY_USER, {
     fetchPolicy: 'network-only',
   });
 
