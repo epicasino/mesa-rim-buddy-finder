@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { iRegisterQuestionProps } from '../types';
+import { QUERY_USER } from '../../../utils/queries';
+import { useLazyQuery } from '@apollo/client';
 
 export default function RegisterQuestions({
   title,
@@ -14,11 +16,27 @@ export default function RegisterQuestions({
   minLength,
 }: iRegisterQuestionProps) {
   const [userError, setError] = useState(false);
+  const [getUser] = useLazyQuery(QUERY_USER, {
+    fetchPolicy: 'network-only',
+  });
 
-  const dataCheck = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const dataCheck = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
     if (userDataObject === '' && question !== 5) return setError(true);
     if (userDataObject.length >= minLength) {
+      if (question === 2) {
+        const { data } = await getUser({
+          variables: { username: userDataObject.toLowerCase() },
+        });
+        // console.log(data);
+        if (!data.user) {
+          setError(false);
+          return nextQuestion(e);
+        }
+        return setError(true);
+      }
       if (question === 3) {
         const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!regex.test(userDataObject)) {
@@ -56,7 +74,7 @@ export default function RegisterQuestions({
             question === 1
               ? { ...userData, name: e.target.value }
               : question === 2
-              ? { ...userData, username: e.target.value }
+              ? { ...userData, username: e.target.value.toLowerCase() }
               : question === 3
               ? { ...userData, password: e.target.value }
               : question === 4
@@ -80,7 +98,11 @@ export default function RegisterQuestions({
 
       {userError && (
         <div>
-          <h1>Error</h1>
+          <h5>
+            {question === 2
+              ? `Username is invalid/taken!`
+              : 'Please input a value!'}
+          </h5>
         </div>
       )}
 
@@ -95,7 +117,7 @@ export default function RegisterQuestions({
           // For some reason, when password check fails, if user fails it again, lastQuestion function will trigger, and will go back to the previous question.
           onClick={(e) => {
             e.preventDefault();
-            e.target.addEventListener('click', lastQuestion);
+            lastQuestion();
           }}
         >
           Prev

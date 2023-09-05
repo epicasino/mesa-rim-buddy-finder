@@ -17,6 +17,9 @@ const resolvers = {
     users: async () => {
       return await User.find({}).select('-__v -password');
     },
+    user: async (parent, { username }, context) => {
+      return await User.findOne({ username });
+    },
   },
   Mutation: {
     login: async (parent, { username, password }, context) => {
@@ -58,11 +61,13 @@ const resolvers = {
 
       if (context.user) {
         try {
-          const addedInfo = await User.findByIdAndUpdate(context.user._id, {
-            $addToSet: {
+          const addedInfo = await User.findByIdAndUpdate(
+            context.user._id,
+            {
               ...userInfo,
             },
-          });
+            { new: true }
+          );
 
           return addedInfo;
         } catch (err) {
