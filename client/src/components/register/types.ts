@@ -33,7 +33,14 @@ export interface iRegisterQuestionProps {
   userData: iUserData;
   userDataObject: string;
   setUserData: Dispatch<SetStateAction<iUserData>>;
-  nextQuestion: (e: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  nextQuestion: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   lastQuestion: () => void;
   minLength: number;
+}
+
+export interface iRegisterConfirmProps {
+  userData: iUserData;
+  setUserData: Dispatch<SetStateAction<iUserData>>;
+  lastQuestion: () => void;
+  submitForm: (e: React.FormEvent<HTMLButtonElement>) => void;
 }

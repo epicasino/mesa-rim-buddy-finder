@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { iRegisterFormProps } from '../types';
+import RegisterConfirm from './RegisterConfirm';
 import RegisterQuestions from './RegisterQuestions';
 
 export default function RegisterForm({
@@ -10,21 +10,18 @@ export default function RegisterForm({
   setQuestion,
   question,
 }: iRegisterFormProps) {
-  useEffect(() => {
-    console.log(question);
-  }, [question]);
+  const submitForm = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log(userData);
+  };
 
-  const nextQuestion = (
-    e:
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const nextQuestion = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     setFade(true);
     setTimeout(() => {
       setQuestion(question + 1);
       setFade(false);
-      console.log(userData);
+      // console.log(userData);
     }, 500);
   };
 
@@ -92,8 +89,8 @@ export default function RegisterForm({
         )}
 
         {/* Question: Phone */}
-        { question === 4 && (
-          <RegisterQuestions 
+        {question === 4 && (
+          <RegisterQuestions
             title={`Now, a phone number...`}
             description={`Just so your fellow climbers can contact you :)`}
             placeholder={`###`}
@@ -104,6 +101,32 @@ export default function RegisterForm({
             nextQuestion={nextQuestion}
             lastQuestion={lastQuestion}
             minLength={10}
+          />
+        )}
+
+        {/* Question: Email */}
+        {question === 5 && (
+          <RegisterQuestions
+            title={`OPTIONAL: Add an email`}
+            description={`If you prefer people to contact you via email.`}
+            placeholder={`email`}
+            userData={userData}
+            userDataObject={userData.email}
+            setUserData={setUserData}
+            question={question}
+            nextQuestion={nextQuestion}
+            lastQuestion={lastQuestion}
+            minLength={0}
+          />
+        )}
+
+        {/* Confirm Prompt */}
+        {question === 6 && (
+          <RegisterConfirm
+            setUserData={setUserData}
+            lastQuestion={lastQuestion}
+            userData={userData}
+            submitForm={submitForm}
           />
         )}
       </div>

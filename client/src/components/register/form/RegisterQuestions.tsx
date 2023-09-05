@@ -15,14 +15,43 @@ export default function RegisterQuestions({
 }: iRegisterQuestionProps) {
   const [error, setError] = useState(false);
 
+  const dataCheck = (
+    e:
+      | React.KeyboardEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    if (userDataObject === '' && question !== 5) return setError(true);
+    if (userDataObject.length >= minLength) {
+      if (question === 3) {
+        const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (!regex.test(userDataObject)) {
+          setUserData({ ...userData, password: '' });
+          return setError(true);
+        }
+      }
+      setError(false);
+      return nextQuestion(e);
+    }
+    return setError(true);
+  };
+
   return (
     <>
-      <label htmlFor="name" className="text-2xl">
+      <label htmlFor={placeholder} className="text-2xl">
         {title}
       </label>
       <small>{description}</small>
       <input
-        type={question === 3 ? 'password' : 'text'}
+        type={
+          question === 3
+            ? 'password'
+            : question === 4
+            ? 'tel'
+            : question === 5
+            ? 'email'
+            : 'text'
+        }
         className="w-1/4 text-4xl text-center m-5 rounded"
         placeholder={placeholder}
         value={userDataObject}
@@ -37,29 +66,20 @@ export default function RegisterQuestions({
               : question === 4
               ? {
                   ...userData,
-                  email: e.target.value,
+                  phone: e.target.value,
                 }
               : question === 5
-              ? { ...userData, phone: e.target.value }
+              ? { ...userData, email: e.target.value }
               : { ...userData };
 
           setUserData(object);
         }}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            if (userDataObject.length >= minLength) {
-              if (question === 3) {
-                console.log('hi');
-                const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-                if (!regex.test(userDataObject)) {
-                  setUserData({ ...userData, password: '' });
-                  setError(true);
-                } else nextQuestion(e);
-              }
-              nextQuestion(e);
-            } else setError(true);
-          }
-        }}
+        // Buggy...
+        // onKeyDown={(e) => {
+        //   if (e.key === 'Enter') {
+        //     dataCheck(e);
+        //   }
+        // }}
       />
 
       {error && (
@@ -87,17 +107,7 @@ export default function RegisterQuestions({
         <button
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
           onClick={(e) => {
-            if (userDataObject.length >= minLength) {
-              if (question === 3) {
-                console.log('hi');
-                const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-                if (!regex.test(userDataObject)) {
-                  setUserData({ ...userData, password: '' });
-                  setError(true);
-                } else nextQuestion(e);
-              }
-              nextQuestion(e);
-            } else setError(true);
+            dataCheck(e);
           }}
         >
           Next
