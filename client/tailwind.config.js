@@ -26,9 +26,13 @@ export default {
           900: '#00161d',
         },
       },
+      gridTemplateRows: {
+        8: 'repeat(8, minmax(0, 1fr))',
+      },
       backgroundImage: {
         homePage: `url('./assets/images/pexels_riccardo.jpg')`,
         formPage: `url('./assets/images/pexels_vladimir.png')`,
+        dashboard: `url('./assets/images/jeremy_bishop_unsplash.jpeg')`,
       },
     },
   },
