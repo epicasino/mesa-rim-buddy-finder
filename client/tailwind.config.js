@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 import defaultTheme from 'tailwindcss/defaultTheme';
+import forms from '@tailwindcss/forms';
 
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -26,11 +27,17 @@ export default {
           900: '#00161d',
         },
       },
+      gridTemplateRows: {
+        8: 'repeat(8, minmax(0, 1fr))',
+        9: 'repeat(9, minmax(0, 1fr))',
+        10: 'repeat(10, minmax(0, 1fr))',
+      },
       backgroundImage: {
         homePage: `url('./assets/images/pexels_riccardo.jpg')`,
         formPage: `url('./assets/images/pexels_vladimir.png')`,
+        dashboard: `url('./assets/images/jeremy_bishop_unsplash.jpeg')`,
       },
     },
   },
-  plugins: [],
+  plugins: [forms],
 };
