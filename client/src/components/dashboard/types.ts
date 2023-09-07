@@ -9,7 +9,13 @@ export interface iUserDataDash {
   pronouns: string;
   leadClimb: boolean;
   topRope: boolean;
-  locations: [string];
+  locations: {
+    miraMesa: boolean;
+    missionValley: boolean;
+    northCity: boolean;
+    reno: boolean;
+    austin: boolean;
+  };
   availability: iAvailabilityWeek;
 }
 
@@ -23,7 +29,13 @@ export interface iUserDataForm {
     pronouns: string;
     leadClimb: boolean;
     topRope: boolean;
-    locations: [string];
+    locations: {
+      miraMesa: boolean;
+      missionValley: boolean;
+      northCity: boolean;
+      reno: boolean;
+      austin: boolean;
+    };
     availability: iAvailabilityWeek;
   };
 }

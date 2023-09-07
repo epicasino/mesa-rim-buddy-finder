@@ -27,54 +27,60 @@ export const REGISTER_USER = gql`
 `
 export const ADD_INFO = gql`
   mutation AddInfo($userInfo: UserInput) {
-  addInfo(userInfo: $userInfo) {
-    _id
-    username
-    name
-    pronouns
-    email
-    phone
-    password
-    locations
-    topRope
-    leadClimb
-    availability {
-      sunday {
-        from
-        to
-        unavailable
+    addInfo(userInfo: $userInfo) {
+      _id
+      username
+      name
+      pronouns
+      email
+      phone
+      password
+      locations {
+        miraMesa
+        missionValley
+        northCity
+        reno
+        austin
       }
-      monday {
-        from
-        to
-        unavailable
-      }
-      tuesday {
-        from
-        to
-        unavailable
-      }
-      wednesday {
-        from
-        to
-        unavailable
-      }
-      thursday {
-        from
-        to
-        unavailable
-      }
-      friday {
-        from
-        to
-        unavailable
-      }
-      saturday {
-        from
-        to
-        unavailable
+      topRope
+      leadClimb
+      availability {
+        sunday {
+          from
+          to
+          unavailable
+        }
+        monday {
+          from
+          to
+          unavailable
+        }
+        tuesday {
+          from
+          to
+          unavailable
+        }
+        wednesday {
+          from
+          to
+          unavailable
+        }
+        thursday {
+          from
+          to
+          unavailable
+        }
+        friday {
+          from
+          to
+          unavailable
+        }
+        saturday {
+          from
+          to
+          unavailable
+        }
       }
     }
   }
-}
-`
+`;

@@ -7,17 +7,31 @@ const typeDefs = `
     email: String
     phone: String
     password: String!
-    locations: [String]
+    locations: Locations
     topRope: Boolean
     leadClimb: Boolean
     availability: Availability
+  }
+  type Locations {
+    miraMesa: Boolean
+    missionValley: Boolean
+    northCity: Boolean
+    reno: Boolean
+    austin: Boolean
+  }
+  input LocationsInput {
+    miraMesa: Boolean
+    missionValley: Boolean
+    northCity: Boolean
+    reno: Boolean
+    austin: Boolean
   }
   input UserInput {
     userId: String
     pronouns: String
     email: String
     phone: String
-    locations: [String]
+    locations: LocationsInput
     topRope: Boolean
     leadClimb: Boolean
     availability: AvailabilityInput

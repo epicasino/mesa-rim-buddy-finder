@@ -11,7 +11,6 @@ export default function DailyFormInputs({
   dayObject,
   day,
 }: iDailyFormInputProps) {
-
   const fromTime = new Date(
     '1970-01-01T' + dayObject.from + 'Z'
   ).toLocaleTimeString('en-US', {
@@ -37,13 +36,9 @@ export default function DailyFormInputs({
             ...fromScheduleObject,
           });
         }}
+        value={fromTime !== 'Invalid Date' ? fromTime : 'From:'}
       >
-        <option value={dayObject.from} disabled selected hidden>
-          {fromTime !== 'Invalid Date' ? fromTime : 'From:'}
-        </option>
-        <option disabled value={''}>
-          From:
-        </option>
+        <option disabled>From:</option>
         <option value={'06:00:00'}>6 AM</option>
         <option value={'07:00:00'}>7 AM</option>
         <option value={'08:00:00'}>8 AM</option>
@@ -71,13 +66,9 @@ export default function DailyFormInputs({
             ...toScheduleObject,
           });
         }}
+        value={toTime !== 'Invalid Date' ? toTime : 'To:'}
       >
-        <option value={dayObject.to} disabled selected hidden>
-          {toTime !== 'Invalid Date' ? toTime : 'To:'}
-        </option>
-        <option disabled value={''}>
-          To:
-        </option>
+        <option disabled>To:</option>
         <option value={'06:00:00'}>6 AM</option>
         <option value={'07:00:00'}>7 AM</option>
         <option value={'08:00:00'}>8 AM</option>

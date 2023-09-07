@@ -35,8 +35,21 @@ const userSchema = new Schema({
     min: 8,
   },
   locations: {
-    type: [String],
-    enum: ['Mira Mesa', 'Mission Valley', 'North City', 'Reno', 'Austin'],
+    miraMesa: {
+      type: Boolean,
+    },
+    missionValley: {
+      type: Boolean,
+    },
+    northCity: {
+      type: Boolean,
+    },
+    reno: {
+      type: Boolean,
+    },
+    austin: {
+      type: Boolean,
+    },
   },
   topRope: {
     type: Boolean,
