@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface iUserDataDash {
   _id: string;
   username: string;
@@ -9,6 +11,21 @@ export interface iUserDataDash {
   topRope: boolean;
   locations: [string];
   availability: iAvailabilityWeek;
+}
+
+export interface iUserDataForm {
+  userData: {
+    _id: string;
+    username: string;
+    name: string;
+    email: string;
+    phone: string;
+    pronouns: string;
+    leadClimb: boolean;
+    topRope: boolean;
+    locations: [string];
+    availability: iAvailabilityWeek;
+  };
 }
 
 interface iAvailabilityWeek {
@@ -26,25 +43,36 @@ interface iAvailabilityWeek {
     from: string;
     to: string;
     unavailable: boolean;
-  }
+  };
   wednesday: {
     from: string;
     to: string;
     unavailable: boolean;
-  }
+  };
   thursday: {
     from: string;
     to: string;
     unavailable: boolean;
-  }
+  };
   friday: {
     from: string;
     to: string;
     unavailable: boolean;
-  }
+  };
   saturday: {
     from: string;
     to: string;
     unavailable: boolean;
-  }
+  };
+}
+
+export interface iDailyFormInputProps {
+  schedule: iAvailabilityWeek;
+  setSchedule: Dispatch<SetStateAction<iAvailabilityWeek>>;
+  dayObject: {
+    from: string;
+    to: string;
+    unavailable: boolean;
+  };
+  day: string;
 }

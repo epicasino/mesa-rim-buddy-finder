@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 import defaultTheme from 'tailwindcss/defaultTheme';
+import forms from '@tailwindcss/forms';
 
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -28,6 +29,8 @@ export default {
       },
       gridTemplateRows: {
         8: 'repeat(8, minmax(0, 1fr))',
+        9: 'repeat(9, minmax(0, 1fr))',
+        10: 'repeat(10, minmax(0, 1fr))',
       },
       backgroundImage: {
         homePage: `url('./assets/images/pexels_riccardo.jpg')`,
@@ -36,5 +39,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [forms],
 };
