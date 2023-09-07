@@ -17,7 +17,7 @@ export default function Dashboard() {
   return (
     <main>
       <section className="bg-dashboard bg-cover min-h-screen flex flex-col items-center justify-center">
-        <div className="text-center bg-slate-100 bg-opacity-50 md:w-[98vw] md:h-[98vh] grid grid-rows-6 justify-items-center items-center gap-5 rounded p-5">
+        <div className="text-center bg-slate-100 bg-opacity-50 md:w-[98vw] md:h-min-[98vh] grid grid-rows-6 justify-items-center items-center gap-5 rounded p-5 m-5">
           <header className="row-span-1">
             <h1>Hello, {userData.username}!</h1>
             <h5>Here's your account details...</h5>
