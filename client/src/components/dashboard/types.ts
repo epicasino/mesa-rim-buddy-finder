@@ -10,11 +10,11 @@ export interface iUserDataDash {
   leadClimb: boolean;
   topRope: boolean;
   locations: {
-    miraMesa: boolean;
-    missionValley: boolean;
-    northCity: boolean;
-    reno: boolean;
-    austin: boolean;
+    miraMesa?: boolean;
+    missionValley?: boolean;
+    northCity?: boolean;
+    reno?: boolean;
+    austin?: boolean;
   };
   availability: iAvailabilityWeek;
 }
@@ -30,11 +30,11 @@ export interface iUserDataForm {
     leadClimb: boolean;
     topRope: boolean;
     locations: {
-      miraMesa: boolean;
-      missionValley: boolean;
-      northCity: boolean;
-      reno: boolean;
-      austin: boolean;
+      miraMesa?: boolean;
+      missionValley?: boolean;
+      northCity?: boolean;
+      reno?: boolean;
+      austin?: boolean;
     };
     availability: iAvailabilityWeek;
   };

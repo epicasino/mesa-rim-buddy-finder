@@ -37,25 +37,32 @@ const userSchema = new Schema({
   locations: {
     miraMesa: {
       type: Boolean,
+      default: false,
     },
     missionValley: {
       type: Boolean,
+      default: false,
     },
     northCity: {
       type: Boolean,
+      default: false,
     },
     reno: {
       type: Boolean,
+      default: false,
     },
     austin: {
       type: Boolean,
+      default: false,
     },
   },
   topRope: {
     type: Boolean,
+    default: false,
   },
   leadClimb: {
     type: Boolean,
+    default: false,
   },
   availability: {
     type: weeklySchema,
