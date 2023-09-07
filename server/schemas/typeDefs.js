@@ -28,6 +28,7 @@ const typeDefs = `
   }
   input UserInput {
     userId: String
+    name: String
     pronouns: String
     email: String
     phone: String

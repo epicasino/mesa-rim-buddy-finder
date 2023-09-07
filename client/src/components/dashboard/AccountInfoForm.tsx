@@ -1,17 +1,40 @@
 import { iUserDataForm } from './types';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { ADD_INFO } from '../../utils/mutations';
+import { useMutation } from '@apollo/client';
 
 export default function AccountInfoForm({ userData }: iUserDataForm) {
   const [formInput, setFormInput] = useState(userData);
 
-  useEffect(() => {
-    console.log(formInput);
-  }, [formInput]);
-
   // console.log(formInput);
 
+  const [addInfo] = useMutation(ADD_INFO);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { _id, username, ...formInputRest } = formInput;
+
+    try {
+      const updatedInfo = await addInfo({
+        variables: { userInfo: { ...formInputRest } },
+      });
+
+      if (updatedInfo?.data) {
+        location.reload();
+      }
+      // console.log(updatedInfo);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
-    <form className="xs:col-span-2 md:col-span-1 w-full h-full bg-slate-200 bg-opacity-75 rounded grid grid-rows-6 grid-cols-4 items-center justify-center">
+    <form
+      className="xs:col-span-2 md:col-span-1 w-full h-full bg-slate-200 bg-opacity-75 rounded grid grid-rows-6 grid-cols-4 items-center justify-center"
+      onSubmit={(e) => handleSubmit(e)}
+    >
       <h5 className="col-span-4">Account Info</h5>
       <div className="flex gap-2 justify-center items-center col-span-2 flex-col">
         <label htmlFor="name">Name:</label>
@@ -71,10 +94,13 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
             checked={formInput.locations.miraMesa ? true : false}
             onChange={(e) => {
               e.target.checked
-                ? setFormInput({ ...formInput, locations: { miraMesa: true } })
+                ? setFormInput({
+                    ...formInput,
+                    locations: { ...formInput.locations, miraMesa: true },
+                  })
                 : setFormInput({
                     ...formInput,
-                    locations: { miraMesa: false },
+                    locations: { ...formInput.locations, miraMesa: false },
                   });
             }}
           />
@@ -89,11 +115,11 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
               e.target.checked
                 ? setFormInput({
                     ...formInput,
-                    locations: { missionValley: true },
+                    locations: { ...formInput.locations, missionValley: true },
                   })
                 : setFormInput({
                     ...formInput,
-                    locations: { missionValley: false },
+                    locations: { ...formInput.locations, missionValley: false },
                   })
             }
           />
@@ -108,11 +134,11 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
               e.target.checked
                 ? setFormInput({
                     ...formInput,
-                    locations: { northCity: true },
+                    locations: { ...formInput.locations, northCity: true },
                   })
                 : setFormInput({
                     ...formInput,
-                    locations: { northCity: false },
+                    locations: { ...formInput.locations, northCity: false },
                   })
             }
           />
@@ -127,11 +153,11 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
               e.target.checked
                 ? setFormInput({
                     ...formInput,
-                    locations: { reno: true },
+                    locations: { ...formInput.locations, reno: true },
                   })
                 : setFormInput({
                     ...formInput,
-                    locations: { reno: false },
+                    locations: { ...formInput.locations, reno: false },
                   })
             }
           />
@@ -146,11 +172,11 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
               e.target.checked
                 ? setFormInput({
                     ...formInput,
-                    locations: { austin: true },
+                    locations: { ...formInput.locations, austin: true },
                   })
                 : setFormInput({
                     ...formInput,
-                    locations: { austin: false },
+                    locations: { ...formInput.locations, austin: false },
                   })
             }
           />
