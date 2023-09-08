@@ -37,6 +37,7 @@ export default function DailyFormInputs({
           });
         }}
         value={fromTime !== 'Invalid Date' ? fromTime : 'From:'}
+        disabled={dayObject.unavailable ? true : false}
       >
         <option disabled>From:</option>
         <option value={'06:00:00'}>6 AM</option>
@@ -67,6 +68,7 @@ export default function DailyFormInputs({
           });
         }}
         value={toTime !== 'Invalid Date' ? toTime : 'To:'}
+        disabled={dayObject.unavailable ? true : false}
       >
         <option disabled>To:</option>
         <option value={'06:00:00'}>6 AM</option>
