@@ -33,9 +33,9 @@ export default {
         10: 'repeat(10, minmax(0, 1fr))',
       },
       backgroundImage: {
-        homePage: `url('./assets/images/pexels_riccardo.jpg')`,
-        formPage: `url('./assets/images/pexels_vladimir.png')`,
-        dashboard: `url('./assets/images/jeremy_bishop_unsplash.jpeg')`,
+        homePage: `url('/assets/images/pexels_riccardo.jpg')`,
+        formPage: `url('/assets/images/pexels_vladimir.png')`,
+        dashboard: `url('/assets/images/jeremy_bishop_unsplash.jpeg')`,
       },
     },
   },
