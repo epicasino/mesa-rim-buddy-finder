@@ -29,7 +29,7 @@ export default function Navbar() {
             to="/dashboard"
             className="transition ease-in-out duration-300 text-neutral-50 hover:text-neutral-300 text-lg hover:no-underline"
           >
-            {loading ? 'Loading' : data?.me.username}
+            {loading ? 'Loading' : data?.me?.username}
           </Link>
         ) : (
           <Link
