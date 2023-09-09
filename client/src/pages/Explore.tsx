@@ -30,7 +30,7 @@ export default function Explore() {
     page: 0,
     users: [],
   });
-  const [getUsers, { loading, error, data }] = useLazyQuery(QUERY_USERS, {
+  const [getUsers, { loading }] = useLazyQuery(QUERY_USERS, {
     fetchPolicy: 'network-only',
   });
 
@@ -100,6 +100,7 @@ export default function Explore() {
           )}
         </div>
       </section>
+      {/* <button type='button' onClick={() => setPage(page + 1)}>Click</button> */}
     </main>
   );
 }
