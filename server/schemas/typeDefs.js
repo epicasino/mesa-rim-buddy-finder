@@ -69,8 +69,12 @@ const typeDefs = `
     token: ID!
     user: User
   }
-  type Query {
+  type UserList {
+    page: String
     users: [User]
+  }
+  type Query {
+    users(page: Int): UserList
     user(username: String!): User
     me: User
   }
