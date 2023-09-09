@@ -76,7 +76,7 @@ const typeDefs = `
   }
   type Mutation {
     login(username: String!, password: String!): Auth
-    register(username: String!, password: String!, name: String!): Auth
+    register(username: String!, password: String!, name: String!, email: String, phone: String): Auth
     removeUser(userId: String!): User
     addInfo(userInfo: UserInput): User
   }
