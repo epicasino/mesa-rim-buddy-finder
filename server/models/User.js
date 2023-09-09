@@ -18,8 +18,8 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    unique: true,
-    match: [/.+@.+\..+/, 'Must use a valid email address'],
+    unique: false,
+    default: '',
   },
   phone: {
     type: String,

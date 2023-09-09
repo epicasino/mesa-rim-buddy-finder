@@ -52,11 +52,17 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    register: async (parent, { username, password, name }, context) => {
+    register: async (
+      parent,
+      { username, password, name, email, phone },
+      context
+    ) => {
       const user = await User.create({
         username,
         name,
         password,
+        email,
+        phone,
       });
 
       const token = signToken(user);
