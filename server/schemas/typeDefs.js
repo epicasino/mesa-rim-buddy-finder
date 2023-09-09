@@ -69,8 +69,12 @@ const typeDefs = `
     token: ID!
     user: User
   }
-  type Query {
+  type UserList {
+    cursor: String
     users: [User]
+  }
+  type Query {
+    users(cursor: Int): UserList
     user(username: String!): User
     me: User
   }

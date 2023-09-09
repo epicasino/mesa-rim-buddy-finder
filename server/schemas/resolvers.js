@@ -13,8 +13,23 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    users: async () => {
-      return await User.find({}).select('-__v -password');
+    users: async (parent, { cursor }, context) => {
+      if (!cursor) {
+        const users = await User.find({})
+          .limit(10)
+          .skip(0)
+          .select('-__v -password');
+        // console.log(users);
+        return { cursor: 0, users };
+      }
+      const users = await User.find({})
+        .limit(10)
+        .skip(cursor * 10)
+        .select('-__v -password');
+
+      return { cursor: cursor, users };
+
+      // return await User.find({}).select('-__v -password');
     },
     user: async (parent, { username }, context) => {
       return await User.findOne({ username });
