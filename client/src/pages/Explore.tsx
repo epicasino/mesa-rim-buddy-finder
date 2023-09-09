@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_USERS } from '../utils/queries';
+import Modal from '../components/explore/Modal';
 
 interface iUsersData {
   page: number;
@@ -30,6 +31,8 @@ export default function Explore() {
     page: 0,
     users: [],
   });
+  const [showModal, setShowModal] = useState(true);
+
   const [getUsers, { loading }] = useLazyQuery(QUERY_USERS, {
     fetchPolicy: 'network-only',
   });
@@ -60,12 +63,15 @@ export default function Explore() {
   return (
     <main>
       <section className="bg-dashboard bg-cover min-h-screen flex flex-col items-center justify-center">
+        {showModal && (
+          <Modal showModal={showModal} setShowModal={setShowModal} />
+        )}
         <div className="text-center bg-slate-100 bg-opacity-50 md:w-[98vw] min-h-[98vh] items-center gap-5 rounded p-5 m-5">
           <h1>Explore</h1>
           {loading ? (
             <h1>Loading...</h1>
           ) : (
-            <table className="table-fixed border-collapse min-w-full overflow-auto">
+            <table className="table-auto border-collapse min-w-full overflow-x-scroll">
               <thead className="border-b-2 border-gunmetal-900">
                 <tr>
                   <th>Name</th>
@@ -79,16 +85,23 @@ export default function Explore() {
               </thead>
               <tbody>
                 {usersData?.users.map((user) => (
-                  <tr data-id={user._id}>
-                    <th className='py-2'>{user.name}</th>
-                    <th className='py-2'>{user.pronouns ? user.phone : 'N/A'}</th>
-                    <th className='py-2'>{user.phone ? user.phone : 'N/A'}</th>
-                    <th className='py-2'>{user.email ? user.email : 'N/A'}</th>
-                    <th className='py-2'>{user.topRope ? '✔️' : ''}</th>
-                    <th className='py-2'>{user.leadClimb ? '✔️' : ''}</th>
+                  <tr
+                    data-id={user._id}
+                    className="border-b-2 border-gunmetal-900"
+                  >
+                    <th className="py-2">{user.name}</th>
+                    <th className="py-2">
+                      {user.pronouns ? user.phone : 'N/A'}
+                    </th>
+                    <th className="py-2">{user.phone ? user.phone : 'N/A'}</th>
+                    <th className="py-2">{user.email ? user.email : 'N/A'}</th>
+                    <th className="py-2">{user.topRope ? '✔️' : ''}</th>
+                    <th className="py-2">{user.leadClimb ? '✔️' : ''}</th>
                     <th className="flex flex-col items-center py-2">
                       {user.locations.miraMesa && <small>Mira Mesa</small>}
-                      {user.locations.missionValley && <small>Mission Valley</small>}
+                      {user.locations.missionValley && (
+                        <small>Mission Valley</small>
+                      )}
                       {user.locations.northCity && <small>North City</small>}
                       {user.locations.reno && <small>Reno</small>}
                       {user.locations.austin && <small>Austin</small>}
