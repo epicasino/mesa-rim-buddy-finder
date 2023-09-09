@@ -70,11 +70,11 @@ const typeDefs = `
     user: User
   }
   type UserList {
-    cursor: String
+    page: String
     users: [User]
   }
   type Query {
-    users(cursor: Int): UserList
+    users(page: Int): UserList
     user(username: String!): User
     me: User
   }

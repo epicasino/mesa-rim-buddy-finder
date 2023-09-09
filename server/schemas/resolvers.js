@@ -13,21 +13,21 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    users: async (parent, { cursor }, context) => {
-      if (!cursor) {
+    users: async (parent, { page }, context) => {
+      if (!page) {
         const users = await User.find({})
           .limit(10)
           .skip(0)
           .select('-__v -password');
         // console.log(users);
-        return { cursor: 0, users };
+        return { page: 0, users };
       }
       const users = await User.find({})
         .limit(10)
-        .skip(cursor * 10)
+        .skip(page * 10)
         .select('-__v -password');
 
-      return { cursor: cursor, users };
+      return { page: page, users };
 
       // return await User.find({}).select('-__v -password');
     },
