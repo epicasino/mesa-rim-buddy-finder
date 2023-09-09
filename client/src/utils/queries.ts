@@ -85,9 +85,60 @@ export const QUERY_USERS = gql`
 `;
 
 export const QUERY_USER = gql`
-  query User($username: String!) {
-  user(username: $username) {
+  query User($userId: String, $username: String) {
+  user(userId: $userId, username: $username) {
+    _id
+    name
     username
+    pronouns
+    email
+    phone
+    locations {
+      miraMesa
+      missionValley
+      northCity
+      reno
+      austin
+    }
+    topRope
+    leadClimb
+    availability {
+      sunday {
+        from
+        to
+        unavailable
+      }
+      monday {
+        from
+        to
+        unavailable
+      }
+      tuesday {
+        from
+        to
+        unavailable
+      }
+      wednesday {
+        from
+        to
+        unavailable
+      }
+      thursday {
+        from
+        to
+        unavailable
+      }
+      friday {
+        from
+        to
+        unavailable
+      }
+      saturday {
+        from
+        to
+        unavailable
+      }
+    }
   }
 }
 `
