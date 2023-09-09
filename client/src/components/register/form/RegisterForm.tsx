@@ -49,7 +49,11 @@ export default function RegisterForm({
     }
   };
 
-  const nextQuestion = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const nextQuestion = (
+    e:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | React.KeyboardEvent<HTMLInputElement>
+  ) => {
     e.preventDefault();
     setFade(true);
     setTimeout(() => {

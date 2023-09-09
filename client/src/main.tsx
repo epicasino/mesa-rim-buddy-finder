@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home.tsx';
 import Login from './pages/Login.tsx';
 import Dashboard from './pages/Dashboard.tsx';
+import Explore from './pages/Explore.tsx';
 
 const router = createBrowserRouter([
   {
@@ -28,8 +29,12 @@ const router = createBrowserRouter([
       },
       {
         path: 'dashboard',
-        element: <Dashboard />
-      }
+        element: <Dashboard />,
+      },
+      {
+        path: 'explore',
+        element: <Explore />,
+      },
     ],
   },
 ]);

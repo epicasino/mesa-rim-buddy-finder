@@ -21,7 +21,9 @@ export default function RegisterQuestions({
   });
 
   const dataCheck = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | React.KeyboardEvent<HTMLInputElement>
   ) => {
     e.preventDefault();
     if (userDataObject === '' && question !== 5) return setError(true);
@@ -89,11 +91,12 @@ export default function RegisterQuestions({
           setUserData(object);
         }}
         // Buggy...
-        // onKeyDown={(e) => {
-        //   if (e.key === 'Enter') {
-        //     dataCheck(e);
-        //   }
-        // }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            dataCheck(e);
+          }
+        }}
       />
 
       {userError && (
