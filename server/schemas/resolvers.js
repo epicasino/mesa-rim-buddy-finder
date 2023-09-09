@@ -31,7 +31,10 @@ const resolvers = {
 
       // return await User.find({}).select('-__v -password');
     },
-    user: async (parent, { username }, context) => {
+    user: async (parent, { username, userId }, context) => {
+      if (userId) {
+        return await User.findById(userId)
+      }
       return await User.findOne({ username });
     },
   },
