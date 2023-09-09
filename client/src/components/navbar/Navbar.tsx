@@ -24,6 +24,12 @@ export default function Navbar() {
             Logout
           </button>
         )}
+        <Link
+          to="/explore"
+          className="transition ease-in-out duration-300 text-neutral-50 hover:text-neutral-300 text-lg hover:no-underline"
+        >
+          Explore
+        </Link>
         {Auth.loggedIn() ? (
           <Link
             to="/dashboard"
