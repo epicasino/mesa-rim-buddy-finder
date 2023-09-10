@@ -22,7 +22,7 @@ export default function TableRow({
           {user.name}
         </button>
       </th>
-      <td className="py-2">{user.pronouns ? user.phone : 'N/A'}</td>
+      <td className="py-2">{user.pronouns ? user.pronouns : 'N/A'}</td>
       <td className="py-2">{user.phone ? user.phone : 'N/A'}</td>
       <td className="py-2">{user.email ? user.email : 'N/A'}</td>
       <td className="py-2">{user.topRope ? '✔️' : ''}</td>
