@@ -60,7 +60,7 @@ export default function RegisterForm({
       setQuestion(question + 1);
       setFade(false);
       // console.log(userData);
-    }, 500);
+    }, 200);
   };
 
   const lastQuestion = () => {
@@ -68,14 +68,14 @@ export default function RegisterForm({
     setTimeout(() => {
       setQuestion(question - 1);
       setFade(false);
-    }, 500);
+    }, 200);
   };
 
   return (
     <form>
       <div
         className={`flex flex-col items-center gap-2 ${
-          fade ? 'transition opacity-0 duration-500' : ''
+          fade ? 'transition opacity-0 duration-200' : ''
         }`}
       >
         {/* Question: Name */}

@@ -4,14 +4,18 @@ export default function Home() {
   return (
     <main className="flex flex-col">
       <section className="bg-homePage bg-cover h-[110vh] w-auto flex flex-col justify-evenly items-center">
-        <header className="flex flex-col gap-5">
-          <h1 className="font-bold text-8xl text-center">GO CLIMB.</h1>
-          <h5 className="text-center">Find your next climbing partner!</h5>
+        <header className="flex flex-col gap-5 justify-center items-center">
+          <h1 className="font-bold text-8xl text-left tracking-[.75rem]">
+            {`GO CLIMB.`}
+          </h1>
+          <h5 className="text-left tracking-widest font-semibold">
+            Find your next climbing partner!
+          </h5>
         </header>
         <a href="#register">
           <img
             src="./assets/svg/arrow_down.svg"
-            className="h-[10rem] w-[10rem] animate-bounce"
+            className="h-[10rem] w-[10rem] motion-reduce:animate-none hover:transition-transform hover:translate-y-5 hover:duration-100 hover:scale-110"
           />
         </a>
       </section>

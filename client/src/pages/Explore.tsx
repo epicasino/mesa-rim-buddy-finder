@@ -79,9 +79,11 @@ export default function Explore() {
               </tbody>
             </table>
           )}
+          <button type="button" disabled onClick={() => setPage(page + 1)}>
+            Test Button for Pagination (Disabled)
+          </button>
         </div>
       </section>
-      {/* <button type='button' onClick={() => setPage(page + 1)}>Click</button> */}
     </main>
   );
 }
