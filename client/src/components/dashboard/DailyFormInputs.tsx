@@ -11,20 +11,6 @@ export default function DailyFormInputs({
   dayObject,
   day,
 }: iDailyFormInputProps) {
-  const fromTime = new Date(
-    '1970-01-01T' + dayObject.from + 'Z'
-  ).toLocaleTimeString('en-US', {
-    timeZone: 'UTC',
-    hour: '2-digit',
-  });
-
-  const toTime = new Date(
-    '1970-01-01T' + dayObject.to + 'Z'
-  ).toLocaleTimeString('en-US', {
-    timeZone: 'UTC',
-    hour: '2-digit',
-  });
-
   return (
     <div className="grid grid-cols-4 justify-items-center items-center">
       <p>{day}:</p>
@@ -36,27 +22,27 @@ export default function DailyFormInputs({
             ...fromScheduleObject,
           });
         }}
-        value={fromTime !== 'Invalid Date' ? fromTime : 'From:'}
+        defaultValue={dayObject.from ? dayObject.from : 'From:'}
         disabled={dayObject.unavailable ? true : false}
       >
         <option disabled>From:</option>
-        <option value={'06:00:00'}>6 AM</option>
-        <option value={'07:00:00'}>7 AM</option>
-        <option value={'08:00:00'}>8 AM</option>
-        <option value={'09:00:00'}>9 AM</option>
-        <option value={'10:00:00'}>10 AM</option>
-        <option value={'11:00:00'}>11 AM</option>
-        <option value={'12:00:00'}>12 PM</option>
-        <option value={'13:00:00'}>1 PM</option>
-        <option value={'14:00:00'}>2 PM</option>
-        <option value={'15:00:00'}>3 PM</option>
-        <option value={'16:00:00'}>4 PM</option>
-        <option value={'17:00:00'}>5 PM</option>
-        <option value={'18:00:00'}>6 PM</option>
-        <option value={'19:00:00'}>7 PM</option>
-        <option value={'20:00:00'}>8 PM</option>
-        <option value={'21:00:00'}>9 PM</option>
-        <option value={'22:00:00'}>10 PM</option>
+        <option value={'6 AM'}>6 AM</option>
+        <option value={'7 AM'}>7 AM</option>
+        <option value={'8 AM'}>8 AM</option>
+        <option value={'9 AM'}>9 AM</option>
+        <option value={'10 AM'}>10 AM</option>
+        <option value={'11 AM'}>11 AM</option>
+        <option value={'12 PM'}>12 PM</option>
+        <option value={'1 PM'}>1 PM</option>
+        <option value={'2 PM'}>2 PM</option>
+        <option value={'3 PM'}>3 PM</option>
+        <option value={'4 PM'}>4 PM</option>
+        <option value={'5 PM'}>5 PM</option>
+        <option value={'6 PM'}>6 PM</option>
+        <option value={'7 PM'}>7 PM</option>
+        <option value={'8 PM'}>8 PM</option>
+        <option value={'9 PM'}>9 PM</option>
+        <option value={'10 PM'}>10 PM</option>
       </select>
       <select
         onChange={(e) => {
@@ -67,27 +53,27 @@ export default function DailyFormInputs({
             ...toScheduleObject,
           });
         }}
-        value={toTime !== 'Invalid Date' ? toTime : 'To:'}
+        defaultValue={dayObject.to ? dayObject.to : 'To:'}
         disabled={dayObject.unavailable ? true : false}
       >
         <option disabled>To:</option>
-        <option value={'06:00:00'}>6 AM</option>
-        <option value={'07:00:00'}>7 AM</option>
-        <option value={'08:00:00'}>8 AM</option>
-        <option value={'09:00:00'}>9 AM</option>
-        <option value={'10:00:00'}>10 AM</option>
-        <option value={'11:00:00'}>11 AM</option>
-        <option value={'12:00:00'}>12 PM</option>
-        <option value={'13:00:00'}>1 PM</option>
-        <option value={'14:00:00'}>2 PM</option>
-        <option value={'15:00:00'}>3 PM</option>
-        <option value={'16:00:00'}>4 PM</option>
-        <option value={'17:00:00'}>5 PM</option>
-        <option value={'18:00:00'}>6 PM</option>
-        <option value={'19:00:00'}>7 PM</option>
-        <option value={'20:00:00'}>8 PM</option>
-        <option value={'21:00:00'}>9 PM</option>
-        <option value={'22:00:00'}>10 PM</option>
+        <option value={'6 AM'}>6 AM</option>
+        <option value={'7 AM'}>7 AM</option>
+        <option value={'8 AM'}>8 AM</option>
+        <option value={'9 AM'}>9 AM</option>
+        <option value={'10 AM'}>10 AM</option>
+        <option value={'11 AM'}>11 AM</option>
+        <option value={'12 PM'}>12 PM</option>
+        <option value={'1 PM'}>1 PM</option>
+        <option value={'2 PM'}>2 PM</option>
+        <option value={'3 PM'}>3 PM</option>
+        <option value={'4 PM'}>4 PM</option>
+        <option value={'5 PM'}>5 PM</option>
+        <option value={'6 PM'}>6 PM</option>
+        <option value={'7 PM'}>7 PM</option>
+        <option value={'8 PM'}>8 PM</option>
+        <option value={'9 PM'}>9 PM</option>
+        <option value={'10 PM'}>10 PM</option>
       </select>
       <div>
         <input

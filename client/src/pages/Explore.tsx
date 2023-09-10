@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_USERS } from '../utils/queries';
-import Modal from '../components/explore/Modal';
+import Modal from '../components/explore/modal/Modal';
 import TableRow from '../components/explore/TableRow';
 import { iUsersData } from '../components/explore/types';
 
@@ -12,7 +12,7 @@ export default function Explore() {
     users: [],
   });
   const [showModal, setShowModal] = useState(false);
-  const [selectedUser, setSelectedUser] = useState('')
+  const [selectedUser, setSelectedUser] = useState('');
 
   const [getUsers, { loading }] = useLazyQuery(QUERY_USERS, {
     fetchPolicy: 'network-only',
@@ -45,7 +45,11 @@ export default function Explore() {
     <main>
       <section className="bg-dashboard bg-cover min-h-screen flex flex-col items-center justify-center">
         {showModal && (
-          <Modal showModal={showModal} setShowModal={setShowModal} selectedUser={selectedUser}/>
+          <Modal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            selectedUser={selectedUser}
+          />
         )}
         <div className="text-center bg-slate-100 bg-opacity-50 md:w-[98vw] min-h-[98vh] items-center gap-5 rounded p-5 m-5">
           <h1>Explore</h1>
@@ -66,7 +70,11 @@ export default function Explore() {
               </thead>
               <tbody>
                 {usersData?.users.map((user) => (
-                  <TableRow user={user} setSelectedUser={setSelectedUser} setShowModal={setShowModal}/>
+                  <TableRow
+                    user={user}
+                    setSelectedUser={setSelectedUser}
+                    setShowModal={setShowModal}
+                  />
                 ))}
               </tbody>
             </table>

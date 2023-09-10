@@ -22,18 +22,18 @@ export default function TableRow({
           {user.name}
         </button>
       </th>
-      <th className="py-2">{user.pronouns ? user.phone : 'N/A'}</th>
-      <th className="py-2">{user.phone ? user.phone : 'N/A'}</th>
-      <th className="py-2">{user.email ? user.email : 'N/A'}</th>
-      <th className="py-2">{user.topRope ? '✔️' : ''}</th>
-      <th className="py-2">{user.leadClimb ? '✔️' : ''}</th>
-      <th className="flex flex-col items-center py-2">
+      <td className="py-2">{user.pronouns ? user.phone : 'N/A'}</td>
+      <td className="py-2">{user.phone ? user.phone : 'N/A'}</td>
+      <td className="py-2">{user.email ? user.email : 'N/A'}</td>
+      <td className="py-2">{user.topRope ? '✔️' : ''}</td>
+      <td className="py-2">{user.leadClimb ? '✔️' : ''}</td>
+      <td className="flex flex-col items-center py-2">
         {user.locations.miraMesa && <small>Mira Mesa</small>}
         {user.locations.missionValley && <small>Mission Valley</small>}
         {user.locations.northCity && <small>North City</small>}
         {user.locations.reno && <small>Reno</small>}
         {user.locations.austin && <small>Austin</small>}
-      </th>
+      </td>
     </tr>
   );
 }
