@@ -16,7 +16,10 @@ export default function ModalSchedule({ userInfo }: { userInfo: iUserModal }) {
               {userInfo?.availability?.sunday
                 ? userInfo?.availability?.sunday.unavailable
                   ? 'Unavailable'
-                  : `From: ${userInfo?.availability?.sunday?.from} to ${userInfo?.availability?.sunday?.to}`
+                  : userInfo?.availability?.sunday.from !== '' &&
+                    userInfo?.availability?.sunday?.to !== ''
+                  ? `From: ${userInfo?.availability?.sunday?.from} to ${userInfo?.availability?.sunday?.to}`
+                  : 'N/A'
                 : 'N/A'}
             </td>
           </tr>
@@ -26,7 +29,10 @@ export default function ModalSchedule({ userInfo }: { userInfo: iUserModal }) {
               {userInfo?.availability?.monday
                 ? userInfo?.availability?.monday.unavailable
                   ? 'Unavailable'
-                  : `From: ${userInfo?.availability?.monday?.from} to ${userInfo?.availability?.monday?.to}`
+                  : userInfo?.availability?.monday.from !== '' &&
+                    userInfo?.availability?.monday?.to !== ''
+                  ? `From: ${userInfo?.availability?.monday?.from} to ${userInfo?.availability?.monday?.to}`
+                  : 'N/A'
                 : 'N/A'}
             </td>
           </tr>
@@ -36,7 +42,10 @@ export default function ModalSchedule({ userInfo }: { userInfo: iUserModal }) {
               {userInfo?.availability?.tuesday
                 ? userInfo?.availability?.tuesday.unavailable
                   ? 'Unavailable'
-                  : `From: ${userInfo?.availability?.tuesday?.from} to ${userInfo?.availability?.tuesday?.to}`
+                  : userInfo?.availability?.tuesday.from !== '' &&
+                    userInfo?.availability?.tuesday?.to !== ''
+                  ? `From: ${userInfo?.availability?.tuesday?.from} to ${userInfo?.availability?.tuesday?.to}`
+                  : 'N/A'
                 : 'N/A'}
             </td>
           </tr>
@@ -46,7 +55,10 @@ export default function ModalSchedule({ userInfo }: { userInfo: iUserModal }) {
               {userInfo?.availability?.wednesday
                 ? userInfo?.availability?.wednesday.unavailable
                   ? 'Unavailable'
-                  : `From: ${userInfo?.availability?.wednesday?.from} to ${userInfo?.availability?.wednesday?.to}`
+                  : userInfo?.availability?.wednesday.from !== '' &&
+                    userInfo?.availability?.wednesday?.to !== ''
+                  ? `From: ${userInfo?.availability?.wednesday?.from} to ${userInfo?.availability?.wednesday?.to}`
+                  : 'N/A'
                 : 'N/A'}
             </td>
           </tr>
@@ -56,7 +68,10 @@ export default function ModalSchedule({ userInfo }: { userInfo: iUserModal }) {
               {userInfo?.availability?.thursday
                 ? userInfo?.availability?.thursday.unavailable
                   ? 'Unavailable'
-                  : `From: ${userInfo?.availability?.thursday?.from} to ${userInfo?.availability?.thursday?.to}`
+                  : userInfo?.availability?.thursday.from !== '' &&
+                    userInfo?.availability?.thursday?.to !== ''
+                  ? `From: ${userInfo?.availability?.thursday?.from} to ${userInfo?.availability?.thursday?.to}`
+                  : 'N/A'
                 : 'N/A'}
             </td>
           </tr>
@@ -66,7 +81,10 @@ export default function ModalSchedule({ userInfo }: { userInfo: iUserModal }) {
               {userInfo?.availability?.friday
                 ? userInfo?.availability?.friday.unavailable
                   ? 'Unavailable'
-                  : `From: ${userInfo?.availability?.friday?.from} to ${userInfo?.availability?.friday?.to}`
+                  : userInfo?.availability?.friday.from !== '' &&
+                    userInfo?.availability?.friday?.to !== ''
+                  ? `From: ${userInfo?.availability?.friday?.from} to ${userInfo?.availability?.friday?.to}`
+                  : 'N/A'
                 : 'N/A'}
             </td>
           </tr>
@@ -76,7 +94,10 @@ export default function ModalSchedule({ userInfo }: { userInfo: iUserModal }) {
               {userInfo?.availability?.saturday
                 ? userInfo?.availability?.saturday.unavailable
                   ? 'Unavailable'
-                  : `From: ${userInfo?.availability?.saturday?.from} to ${userInfo?.availability?.saturday?.to}`
+                  : userInfo?.availability?.saturday.from !== '' &&
+                    userInfo?.availability?.saturday?.to !== ''
+                  ? `From: ${userInfo?.availability?.saturday?.from} to ${userInfo?.availability?.saturday?.to}`
+                  : 'N/A'
                 : 'N/A'}
             </td>
           </tr>

@@ -4,8 +4,12 @@ import { QUERY_USERS } from '../utils/queries';
 import Modal from '../components/explore/modal/Modal';
 import TableRow from '../components/explore/TableRow';
 import { iUsersData } from '../components/explore/types';
+import Auth from '../utils/auth';
 
 export default function Explore() {
+
+  const userLoggedIn = Auth.loggedIn()
+
   const [page, setPage] = useState(0);
   const [usersData, setUsersData] = useState<iUsersData>({
     page: 0,
@@ -42,7 +46,7 @@ export default function Explore() {
   // console.log(usersData);
 
   return (
-    <main>
+    <main className='mt-[10vh]'>
       <section className="bg-dashboard bg-cover min-h-screen flex flex-col items-center justify-center">
         {showModal && (
           <Modal
@@ -53,6 +57,7 @@ export default function Explore() {
         )}
         <div className="text-center bg-slate-100 bg-opacity-50 md:w-[98vw] min-h-[98vh] items-center gap-5 rounded p-5 m-5">
           <h1>Explore</h1>
+          {!userLoggedIn && (<h5>To see Email & Phone of your follow climbers, log in or register!</h5>) }
           {loading ? (
             <h1>Loading...</h1>
           ) : (
@@ -74,6 +79,7 @@ export default function Explore() {
                     user={user}
                     setSelectedUser={setSelectedUser}
                     setShowModal={setShowModal}
+                    loggedIn={userLoggedIn}
                   />
                 ))}
               </tbody>
