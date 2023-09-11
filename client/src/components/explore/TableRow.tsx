@@ -20,6 +20,8 @@ export default function TableRow({
             setSelectedUser(user._id);
             setShowModal(true);
           }}
+          className='hover:underline'
+          disabled={!loggedIn}
         >
           {user.name}
         </button>
@@ -32,7 +34,15 @@ export default function TableRow({
             : 'N/A'
           : user.phone.replace(user.phone, '*'.repeat(user.phone.length))}
       </td>
-      <td className="py-2">{loggedIn ? user.email ? user.email : 'N/A' : user.email?.replace(user.email, '*'.repeat(user.email.length))}</td>
+      <td className="py-2">
+        {loggedIn
+          ? user.email
+            ? user.email
+            : 'N/A'
+          : user.email
+          ? user.email?.replace(user.email, '*'.repeat(user.email.length))
+          : 'N/A'}
+      </td>
       <td className="py-2">{user.topRope ? '✔️' : ''}</td>
       <td className="py-2">{user.leadClimb ? '✔️' : ''}</td>
       <td className="flex flex-col items-center py-2">
