@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { iRegisterQuestionProps } from '../types';
 import { QUERY_USER } from '../../../utils/queries';
 import { useLazyQuery } from '@apollo/client';
+import { hasBannedWords } from 'banned-words-spotter';
 
 export default function RegisterQuestions({
   title,
@@ -16,6 +17,7 @@ export default function RegisterQuestions({
   minLength,
 }: iRegisterQuestionProps) {
   const [userError, setError] = useState(false);
+  const [profanity, setProfanity] = useState(false);
   const [getUser] = useLazyQuery(QUERY_USER, {
     fetchPolicy: 'network-only',
   });
@@ -28,6 +30,7 @@ export default function RegisterQuestions({
     e.preventDefault();
     if (userDataObject === '' && question !== 5) return setError(true);
     if (userDataObject.length >= minLength) {
+      if (hasBannedWords(userDataObject)) return setProfanity(true);
       if (question === 2) {
         const { data } = await getUser({
           variables: { username: userDataObject.toLowerCase() },
@@ -106,6 +109,12 @@ export default function RegisterQuestions({
               ? `Username is invalid/taken!`
               : 'Please input a value!'}
           </h5>
+        </div>
+      )}
+
+      {profanity && (
+        <div>
+          <h5>Please, no profanity.</h5>
         </div>
       )}
 

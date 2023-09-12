@@ -20,7 +20,7 @@ export default function LoginForm() {
         const { data } = await loginUser({ variables: { username, password } });
 
         if (!data) {
-          throw `Can't Find User!`;
+          throw `Error Logging In!`;
         }
 
         Auth.login(data.login.token);
@@ -34,24 +34,28 @@ export default function LoginForm() {
 
   return (
     <form
-      className="text-center bg-slate-100 bg-opacity-50 md:w-[50vw] md:h-[70vh] xs:w-screen xs:h-[90vh] grid grid-rows-6 justify-items-center items-center gap-10 rounded p-10"
+      className="text-center bg-slate-100 bg-opacity-50 md:w-[50vw] md:h-[70vh] xs:w-screen xs:h-[90vh] flex flex-col justify-items-center items-center gap-10 rounded p-10"
       onSubmit={(e) => handleSubmit(e)}
     >
-      <header className="row-span-2">
+      <header>
         <h1>Got an account? Log In!</h1>
-        <HashLink to='/#register'><small className='text-black'>Need to Register Still? Click Here!</small></HashLink>
+        <HashLink to="/#register">
+          <small className="text-black">
+            Need to Register Still? Click Here!
+          </small>
+        </HashLink>
       </header>
-      <div className="flex flex-col items-center row-span-2">
+      <div className="flex flex-col items-center">
         <label htmlFor="username">Username</label>
         <input
-          className="text-2xl px-2"
+          className="text-2xl px-2 rounded"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value.toLowerCase())}
         />
         <label htmlFor="password">Password</label>
         <input
-          className="text-2xl px-2"
+          className="text-2xl px-2 rounded"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -60,7 +64,7 @@ export default function LoginForm() {
       <button
         type="submit"
         className="text-lg bg-blue-600 hover:bg-blue-500
-            focus:bg-blue-600 py-1 px-4 text-white rounded-lg w-fit"
+            focus:bg-blue-600 py-1 px-4 text-white rounded-lg w-fit flex items-center justify-center"
       >
         Login
       </button>
