@@ -21,6 +21,8 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
     const { _id, username, ...formInputRest } = formInput;
 
     try {
+      const pronounRegex = /(\w+\/\w+)/;
+
       if (
         hasBannedWords(
           `${formInputRest.email} ${formInputRest.name} ${formInputRest.pronouns}`
@@ -28,7 +30,9 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
       ) {
         throw 'Profanity Detected';
       }
-
+      if (!pronounRegex.test(formInputRest.pronouns)) {
+        throw 'Pronouns Invalid';
+      }
       const updatedInfo = await addInfo({
         variables: { userInfo: { ...formInputRest } },
       });
@@ -51,7 +55,10 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
       <header className="col-span-4 flex flex-col">
         <h5>Account Info</h5>
         {updateError.message === 'Profanity Detected' && (
-          <h5>{updateError.message} in one or more fields!</h5>
+          <h5>ERROR: {updateError.message} in one or more fields!</h5>
+        )}
+        {updateError.message === 'Pronouns Invalid' && (
+          <h5>ERROR: Pronouns invalid!</h5>
         )}
       </header>
       <div className="flex gap-2 justify-center items-center col-span-2 flex-col">
@@ -95,7 +102,6 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
           type="tel"
           name="phone"
           value={formInput.phone}
-          pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"
           maxLength={14}
           placeholder="Phone"
           onChange={(e) =>
