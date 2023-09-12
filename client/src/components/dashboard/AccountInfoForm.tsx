@@ -2,9 +2,14 @@ import { iUserDataForm } from './types';
 import { useState } from 'react';
 import { ADD_INFO } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
+import { hasBannedWords } from 'banned-words-spotter';
 
 export default function AccountInfoForm({ userData }: iUserDataForm) {
   const [formInput, setFormInput] = useState(userData);
+
+  const [updateError, setUpdatedError] = useState<{ message: unknown }>({
+    message: '',
+  });
 
   // console.log(formInput);
 
@@ -12,11 +17,18 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { _id, username, ...formInputRest } = formInput;
 
     try {
+      if (
+        hasBannedWords(
+          `${formInputRest.email} ${formInputRest.name} ${formInputRest.pronouns}`
+        )
+      ) {
+        throw 'Profanity Detected';
+      }
+
       const updatedInfo = await addInfo({
         variables: { userInfo: { ...formInputRest } },
       });
@@ -27,6 +39,7 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
       // console.log(updatedInfo);
     } catch (err) {
       console.error(err);
+      setUpdatedError({ message: err });
     }
   };
 
@@ -35,7 +48,12 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
       className="xs:col-span-2 md:col-span-1 w-full h-full bg-slate-200 bg-opacity-75 rounded grid grid-rows-6 grid-cols-4 items-center justify-center"
       onSubmit={(e) => handleSubmit(e)}
     >
-      <h5 className="col-span-4">Account Info</h5>
+      <header className="col-span-4 flex flex-col">
+        <h5>Account Info</h5>
+        {updateError.message === 'Profanity Detected' && (
+          <h5>{updateError.message} in one or more fields!</h5>
+        )}
+      </header>
       <div className="flex gap-2 justify-center items-center col-span-2 flex-col">
         <label htmlFor="name">Name:</label>
         <input
@@ -52,9 +70,9 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
           name="pronouns"
           value={formInput?.pronouns || ''}
           placeholder="Pronouns"
-          onChange={(e) =>
-            setFormInput({ ...formInput, pronouns: e.target.value })
-          }
+          onChange={(e) => {
+            setFormInput({ ...formInput, pronouns: e.target.value });
+          }}
           className="form-input"
         />
       </div>
@@ -77,6 +95,8 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
           type="tel"
           name="phone"
           value={formInput.phone}
+          pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"
+          maxLength={14}
           placeholder="Phone"
           onChange={(e) =>
             setFormInput({ ...formInput, phone: e.target.value })
