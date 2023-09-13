@@ -7,7 +7,6 @@ export default function RegisterConfirm({
   submitForm,
 }: iRegisterConfirmProps) {
   return (
-    
     <>
       <div className="flex flex-col text-start">
         <label htmlFor="userDataConfirm" className="text-2xl text-center">
