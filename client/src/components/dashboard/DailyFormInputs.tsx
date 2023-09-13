@@ -25,7 +25,9 @@ export default function DailyFormInputs({
         defaultValue={dayObject.from ? dayObject.from : ''}
         disabled={dayObject.unavailable ? true : false}
       >
-        <option disabled value={''}>From:</option>
+        <option disabled value={''}>
+          From:
+        </option>
         <option value={'6 AM'}>6 AM</option>
         <option value={'7 AM'}>7 AM</option>
         <option value={'8 AM'}>8 AM</option>

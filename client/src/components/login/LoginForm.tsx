@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { LOGIN_USER } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
-import { HashLink } from 'react-router-hash-link'
+import { HashLink } from 'react-router-hash-link';
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
@@ -29,7 +29,7 @@ export default function LoginForm() {
         console.error(err);
       }
     }
-    return
+    return;
   };
 
   return (

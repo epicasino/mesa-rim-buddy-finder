@@ -20,7 +20,7 @@ export default function TableRow({
             setSelectedUser(user._id);
             setShowModal(true);
           }}
-          className='hover:underline'
+          className="hover:underline"
           disabled={!loggedIn}
         >
           {user.name}

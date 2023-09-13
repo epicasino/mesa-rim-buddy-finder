@@ -5,8 +5,7 @@ import decode from 'jwt-decode';
 class AuthService {
   // get user data
   getProfile() {
-    
-    // Nullish coalescing operator (??) could be used for type-checking, should never return right side 
+    // Nullish coalescing operator (??) could be used for type-checking, should never return right side
     // return decode(this.getToken() ?? '');
 
     // Used an alternate solution- less elegant, but same purpose
@@ -26,7 +25,7 @@ class AuthService {
   // check if token is expired
   isTokenExpired(token: string) {
     try {
-      const decoded: {exp: number} = decode(token);
+      const decoded: { exp: number } = decode(token);
       if (decoded.exp < Date.now() / 1000) {
         return true;
       } else return false;
