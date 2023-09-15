@@ -208,8 +208,8 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 grid-rows-2 col-span-4">
-        <label className="col-span-2 mt-5">Disciplines:</label>
+      <div className="grid grid-cols-3 grid-rows-2 col-span-4">
+        <label className="col-span-3 mt-5">Disciplines:</label>
         <div className="flex flex-col items-center">
           <label htmlFor="Top Rope">Top Rope</label>
           <input
@@ -238,6 +238,22 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
                 : setFormInput({
                     ...formInput,
                     leadClimb: false,
+                  });
+            }}
+          />
+        </div>
+        <div className="flex flex-col items-center">
+          <label htmlFor="Bouldering">Bouldering</label>
+          <input
+            type="checkbox"
+            name="Bouldering"
+            checked={formInput.bouldering ? true : false}
+            onChange={(e) => {
+              e.target.checked
+                ? setFormInput({ ...formInput, bouldering: true })
+                : setFormInput({
+                    ...formInput,
+                    bouldering: false,
                   });
             }}
           />

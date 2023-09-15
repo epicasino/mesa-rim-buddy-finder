@@ -64,6 +64,10 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  bouldering: {
+    type: Boolean,
+    default: false,
+  },
   availability: {
     type: weeklySchema,
   },

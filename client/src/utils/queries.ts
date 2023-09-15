@@ -18,6 +18,7 @@ export const QUERY_ME = gql`
       }
       topRope
       leadClimb
+      bouldering
       availability {
         sunday {
           from
@@ -71,6 +72,7 @@ export const QUERY_USERS = gql`
         email
         topRope
         leadClimb
+        bouldering
         locations {
           miraMesa
           missionValley

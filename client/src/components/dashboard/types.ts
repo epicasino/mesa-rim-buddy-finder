@@ -9,6 +9,7 @@ export interface iUserDataDash {
   pronouns: string;
   leadClimb: boolean;
   topRope: boolean;
+  bouldering: boolean;
   locations: {
     miraMesa?: boolean;
     missionValley?: boolean;
@@ -29,6 +30,7 @@ export interface iUserDataForm {
     pronouns: string;
     leadClimb: boolean;
     topRope: boolean;
+    bouldering: boolean;
     locations: {
       miraMesa?: boolean;
       missionValley?: boolean;
