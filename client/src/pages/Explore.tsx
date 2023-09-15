@@ -21,12 +21,9 @@ export default function Explore() {
     fetchPolicy: 'network-only',
   });
 
-  // This will run one time after the component mounts
   useEffect(() => {
-    // callback function to call when event triggers
     const onPageLoad = async () => {
-      // do something else
-      console.log('page loaded');
+      // console.log('page loaded');
       const { data } = await getUsers({ variables: { page } });
       // console.log(data);
       setUsersData(data?.users);
@@ -73,6 +70,7 @@ export default function Explore() {
                   <th>Email</th>
                   <th>Top Rope</th>
                   <th>Lead</th>
+                  <th>Bouldering</th>
                   <th>Locations</th>
                 </tr>
               </thead>
