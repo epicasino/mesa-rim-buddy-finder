@@ -10,6 +10,7 @@ export interface iUserDataDash {
   leadClimb: boolean;
   topRope: boolean;
   bouldering: boolean;
+  showProfile: boolean;
   locations: {
     miraMesa?: boolean;
     missionValley?: boolean;
@@ -31,6 +32,7 @@ export interface iUserDataForm {
     leadClimb: boolean;
     topRope: boolean;
     bouldering: boolean;
+    showProfile: boolean;
     locations: {
       miraMesa?: boolean;
       missionValley?: boolean;
