@@ -11,6 +11,7 @@ const typeDefs = `
     topRope: Boolean
     leadClimb: Boolean
     bouldering: Boolean
+    showProfile: Boolean
     availability: Availability
   }
   type Locations {
@@ -37,6 +38,7 @@ const typeDefs = `
     topRope: Boolean
     leadClimb: Boolean
     bouldering: Boolean
+    showProfile: Boolean
     availability: AvailabilityInput
   }
   type Availability {
