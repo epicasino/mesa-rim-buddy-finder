@@ -72,7 +72,7 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
         />
       </div>
       <div className="flex gap-2 justify-center items-center col-span-2 flex-col">
-        <label htmlFor="pronouns">Pronouns</label>
+        <label htmlFor="pronouns">Pronouns:</label>
         <input
           name="pronouns"
           value={formInput?.pronouns || ''}
@@ -259,7 +259,20 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
           />
         </div>
       </div>
-      <div className="col-span-4">
+      <div className="col-span-4 flex flex-col items-center gap-2">
+        <div className="inline-flex items-center">
+          <input
+            name="Show Profile"
+            type="checkbox"
+            checked={formInput.showProfile}
+            onChange={(e) => {
+              e.target.checked
+                ? setFormInput({ ...formInput, showProfile: true })
+                : setFormInput({ ...formInput, showProfile: false });
+            }}
+          />
+          <label htmlFor="Show Profile">Show Profile on Explore</label>
+        </div>
         <button
           type="submit"
           className="px-3 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded"
