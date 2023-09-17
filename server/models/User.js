@@ -68,6 +68,10 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  showProfile: {
+    type: Boolean,
+    default: true,
+  },
   availability: {
     type: weeklySchema,
   },

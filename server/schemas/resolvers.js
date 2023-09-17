@@ -15,14 +15,14 @@ const resolvers = {
     },
     users: async (parent, { page }, context) => {
       if (!page) {
-        const users = await User.find({})
+        const users = await User.find({ showProfile: true })
           .limit(10)
           .skip(0)
           .select('-__v -password');
         // console.log(users);
         return { page: 0, users };
       }
-      const users = await User.find({})
+      const users = await User.find({ showProfile: true })
         .limit(10)
         .skip(page * 10)
         .select('-__v -password');
@@ -33,7 +33,7 @@ const resolvers = {
     },
     user: async (parent, { username, userId }, context) => {
       if (userId) {
-        return await User.findById(userId)
+        return await User.findById(userId);
       }
       return await User.findOne({ username });
     },
