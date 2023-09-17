@@ -43,8 +43,9 @@ export default function TableRow({
           ? user.email?.replace(user.email, '*'.repeat(user.email.length))
           : 'N/A'}
       </td>
-      <td className="py-2">{user.topRope ? '✔️' : ''}</td>
-      <td className="py-2">{user.leadClimb ? '✔️' : ''}</td>
+      <td className="py-2">{user.topRope ? '✔️' : 'X'}</td>
+      <td className="py-2">{user.leadClimb ? '✔️' : 'X'}</td>
+      <td className="py-2">{user.bouldering ? '✔️' : 'X'}</td>
       <td className="flex flex-col items-center py-2">
         {user.locations.miraMesa && <small>Mira Mesa</small>}
         {user.locations.missionValley && <small>Mission Valley</small>}

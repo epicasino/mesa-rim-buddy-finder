@@ -33,11 +33,11 @@ export default function Modal({
   return (
     <dialog
       open={showModal ? true : false}
-      className="w-auto h-full bg-slate-950 bg-opacity-50 flex justify-center items-center"
+      className="w-auto h-[106vh] bg-slate-950 bg-opacity-50 flex justify-center items-center"
       onClick={() => setShowModal(false)}
     >
       <section
-        className="w-2/3 h-2/3 bg-white rounded grid grid-rows-5 user-modal"
+        className="w-2/3 min-h-2/3 h-fit bg-white rounded grid grid-rows-5 user-modal"
         onClick={(e) => e.stopPropagation()}
       >
         {loading ? (
@@ -57,6 +57,7 @@ export default function Modal({
                   <h3>Info</h3>
                   <h5>Top Rope: {userInfo.topRope ? '✔️' : 'X'}</h5>
                   <h5>Lead Climb: {userInfo.leadClimb ? '✔️' : 'X'}</h5>
+                  <h5>Bouldering: {userInfo.bouldering ? '✔️' : 'X'}</h5>
                   <h5>Phone: {userInfo.phone}</h5>
                   {userInfo.email && <h5>{userInfo.email}</h5>}
                 </article>

@@ -11,6 +11,7 @@ export interface iUserData {
   email?: string;
   topRope: boolean;
   leadClimb: boolean;
+  bouldering: boolean;
   locations: {
     miraMesa: boolean;
     missionValley: boolean;
@@ -29,6 +30,7 @@ export interface iUserModal {
   pronouns: string;
   leadClimb: boolean;
   topRope: boolean;
+  bouldering: boolean;
   locations: {
     miraMesa?: boolean;
     missionValley?: boolean;

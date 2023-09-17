@@ -104,6 +104,7 @@ export const QUERY_USER = gql`
       }
       topRope
       leadClimb
+      bouldering
       availability {
         sunday {
           from
