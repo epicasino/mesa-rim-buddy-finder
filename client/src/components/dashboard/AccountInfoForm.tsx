@@ -30,7 +30,11 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
       ) {
         throw 'Profanity Detected';
       }
-      if (!pronounRegex.test(formInputRest.pronouns)) {
+      if (
+        !pronounRegex.test(formInputRest.pronouns) &&
+        formInputRest.pronouns !== null &&
+        formInputRest.pronouns !== ''
+      ) {
         throw 'Pronouns Invalid';
       }
       const updatedInfo = await addInfo({
