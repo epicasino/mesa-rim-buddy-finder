@@ -49,6 +49,19 @@ export default function RegisterQuestions({
           return setError(true);
         }
       }
+      if (question === 4) {
+        const { data } = await getUser({
+          variables: {
+            phone: userDataObject,
+          },
+        });
+
+        if (!data.user) {
+          setError(false);
+          return nextQuestion(e);
+        }
+        return setError(true);
+      }
       setError(false);
       return nextQuestion(e);
     }
@@ -72,8 +85,7 @@ export default function RegisterQuestions({
             : 'text'
         }
         className={`xs:w-1/2 xs:text-2xl md:w-1/4 md:text-4xl text-center m-5 rounded ${
-          userError &&
-          'border-red-500 focus:border-blue-400'
+          userError && 'border-red-500 focus:border-blue-400'
         }`}
         placeholder={placeholder}
         value={userDataObject}
@@ -88,7 +100,7 @@ export default function RegisterQuestions({
               : question === 4
               ? {
                   ...userData,
-                  phone: e.target.value,
+                  phone: e.target.value.trim().replace(/\D/g, ''),
                 }
               : question === 5
               ? { ...userData, email: e.target.value }
@@ -135,6 +147,8 @@ export default function RegisterQuestions({
             <h5>
               {question === 2
                 ? `Username is invalid/taken!`
+                : question === 4
+                ? `Phone # is taken!`
                 : 'Please input a value!'}
             </h5>
           </div>

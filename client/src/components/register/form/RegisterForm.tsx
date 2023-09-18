@@ -2,8 +2,10 @@ import { iRegisterFormProps } from '../types';
 import RegisterConfirm from './RegisterConfirm';
 import RegisterQuestions from './RegisterQuestions';
 import { REGISTER_USER, ADD_INFO } from '../../../utils/mutations';
-import { useMutation } from '@apollo/client';
+import { QUERY_USER } from '../../../utils/queries';
+import { useMutation, useLazyQuery } from '@apollo/client';
 import Auth from '../../../utils/auth';
+import { useState } from 'react';
 
 export default function RegisterForm({
   userData,
@@ -15,11 +17,37 @@ export default function RegisterForm({
 }: iRegisterFormProps) {
   const [registerUser] = useMutation(REGISTER_USER);
   const [addInfo] = useMutation(ADD_INFO);
+  const [getUser] = useLazyQuery(QUERY_USER);
 
-  const submitForm = async (e: React.FormEvent<HTMLButtonElement>) => {
+  const [confirmError, setConfirmError] = useState<{ message: string | null }>({
+    message: null,
+  });
+
+  const submitForm = async (
+    e: React.FormEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLDivElement>
+  ) => {
     e.preventDefault();
-    console.log(userData);
+    // console.log(userData);
+
     try {
+      const checkUser = await getUser({
+        variables: { username: userData.username },
+      });
+
+      const checkPhone = await getUser({
+        variables: { username: '', phone: userData.phone },
+      });
+      if (checkUser.data?.user && checkPhone.data?.user) {
+        setConfirmError({ message: 'Username and Phone Taken!' });
+        throw { message: 'Username and Phone Taken!' };
+      } else if (checkPhone.data?.user) {
+        setConfirmError({ message: 'Phone Taken!' });
+        throw { message: 'Phone Taken!' };
+      } else if (checkUser.data?.user) {
+        setConfirmError({ message: 'Username Taken!' });
+        throw { message: 'Username Taken!' };
+      }
+
       const { data } = await registerUser({
         variables: {
           username: userData.username,
@@ -27,7 +55,7 @@ export default function RegisterForm({
           password: userData.password,
         },
       });
-      console.log(data);
+      // console.log(data);
 
       const addedInfo = await addInfo({
         variables: {
@@ -39,7 +67,7 @@ export default function RegisterForm({
         },
       });
 
-      console.log(addedInfo);
+      // console.log(addedInfo);
 
       if (data && addedInfo) {
         Auth.login(data.register.token);
@@ -147,7 +175,7 @@ export default function RegisterForm({
           <RegisterQuestions
             title={`OPTIONAL: Add an email`}
             description={`If you prefer people to contact you via email.`}
-            placeholder={`email`}
+            placeholder={`Email`}
             userData={userData}
             userDataObject={userData.email}
             setUserData={setUserData}
@@ -165,6 +193,7 @@ export default function RegisterForm({
             lastQuestion={lastQuestion}
             userData={userData}
             submitForm={submitForm}
+            confirmError={confirmError}
           />
         )}
       </div>

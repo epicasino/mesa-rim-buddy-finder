@@ -5,10 +5,19 @@ export default function RegisterConfirm({
   setUserData,
   lastQuestion,
   submitForm,
+  confirmError,
 }: iRegisterConfirmProps) {
   return (
     <>
-      <div className="flex flex-col text-start">
+      <div
+        className="flex flex-col text-start"
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            submitForm(e);
+          }
+        }}
+      >
         <label htmlFor="userDataConfirm" className="text-2xl text-center">
           Just to confirm...
         </label>
@@ -83,6 +92,8 @@ export default function RegisterConfirm({
           Submit
         </button>
       </div>
+
+      {confirmError && <p>{confirmError.message}</p>}
     </>
   );
 }
