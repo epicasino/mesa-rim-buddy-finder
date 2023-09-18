@@ -5,7 +5,7 @@ export default function Home() {
     <main className="flex flex-col">
       <section className="bg-homePage bg-cover h-[110vh] w-auto flex flex-col justify-evenly items-center">
         <header className="flex flex-col gap-5 justify-center items-center">
-          <h1 className="font-bold text-8xl text-left tracking-[.75rem]">
+          <h1 className="font-bold xs:text-7xl xs:text-center xs:tracking-normal md:text-8xl md:text-left md:tracking-[.75rem]">
             {`GO CLIMB.`}
           </h1>
           <h5 className="text-left tracking-widest font-semibold">

@@ -71,7 +71,10 @@ export default function RegisterQuestions({
             ? 'email'
             : 'text'
         }
-        className="w-1/4 text-4xl text-center m-5 rounded"
+        className={`xs:w-1/2 xs:text-2xl md:w-1/4 md:text-4xl text-center m-5 rounded ${
+          userError &&
+          'border-red-500 focus:border-blue-400'
+        }`}
         placeholder={placeholder}
         value={userDataObject}
         onChange={(e) => {
@@ -93,7 +96,6 @@ export default function RegisterQuestions({
 
           setUserData(object);
         }}
-        // Buggy...
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             e.preventDefault();
