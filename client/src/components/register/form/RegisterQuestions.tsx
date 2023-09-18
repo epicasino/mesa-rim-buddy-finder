@@ -102,22 +102,6 @@ export default function RegisterQuestions({
         }}
       />
 
-      {userError && (
-        <div>
-          <h5>
-            {question === 2
-              ? `Username is invalid/taken!`
-              : 'Please input a value!'}
-          </h5>
-        </div>
-      )}
-
-      {profanity && (
-        <div>
-          <h5>Please, no profanity.</h5>
-        </div>
-      )}
-
       <div className="question-boxes inline-flex">
         <button
           className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l ${
@@ -126,7 +110,6 @@ export default function RegisterQuestions({
               : ''
           }`}
           disabled={question <= 1 ? true : false}
-          // For some reason, when password check fails, if user fails it again, lastQuestion function will trigger, and will go back to the previous question.
           onClick={(e) => {
             e.preventDefault();
             lastQuestion();
@@ -142,6 +125,24 @@ export default function RegisterQuestions({
         >
           Next
         </button>
+      </div>
+
+      <div className="errors mt-5">
+        {userError && (
+          <div>
+            <h5>
+              {question === 2
+                ? `Username is invalid/taken!`
+                : 'Please input a value!'}
+            </h5>
+          </div>
+        )}
+
+        {profanity && (
+          <div>
+            <h5>Please, no profanity.</h5>
+          </div>
+        )}
       </div>
     </>
   );

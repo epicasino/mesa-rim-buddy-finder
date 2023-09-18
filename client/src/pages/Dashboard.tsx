@@ -17,7 +17,7 @@ export default function Dashboard() {
 
   return (
     <main>
-      <section className="bg-dashboard bg-cover min-h-screen flex flex-col items-center justify-center">
+      <section className="bg-dashboard bg-cover min-h-screen flex flex-col items-center justify-center mt-[10vh]">
         <div className="text-center bg-slate-100 bg-opacity-50 md:w-[98vw] md:h-min-[98vh] grid grid-rows-6 justify-items-center items-center gap-5 rounded p-5 m-5">
           {loading ? (
             <h1 className="row-span-full">Loading...</h1>
