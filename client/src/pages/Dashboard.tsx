@@ -18,16 +18,16 @@ export default function Dashboard() {
   return (
     <main>
       <section className="bg-dashboard bg-cover min-h-screen flex flex-col items-center justify-center mt-[10vh]">
-        <div className="text-center bg-slate-100 bg-opacity-50 md:w-[98vw] md:h-min-[98vh] grid grid-rows-6 justify-items-center items-center gap-5 rounded p-5 m-5">
+        <div className="text-center bg-slate-100 bg-opacity-50 md:w-[98vw] md:h-min-[98vh] justify-items-center items-center gap-5 rounded md:p-5 md:m-5">
           {loading ? (
-            <h1 className="row-span-full">Loading...</h1>
+            <h1>Loading...</h1>
           ) : (
             <>
-              <header className="row-span-1">
+              <header className='my-8'>
                 <h1>Hello, {userData.username}!</h1>
                 <h5>Here's your account details...</h5>
               </header>
-              <section className="w-full h-full row-span-5 grid grid-cols-2 gap-2">
+              <section className="w-full h-full grid grid-cols-2 gap-2">
                 <ScheduleForm userData={userData} />
                 <AccountInfoForm userData={userData} />
               </section>

@@ -42,43 +42,43 @@ export default function ScheduleForm({ userData }: iUserDataForm) {
         schedule={schedule}
         setSchedule={setSchedule}
         dayObject={schedule.sunday}
-        day="Sunday"
+        day="Sun"
       />
       <DailyFormInputs
         schedule={schedule}
         setSchedule={setSchedule}
         dayObject={schedule.monday}
-        day="Monday"
+        day="Mon"
       />
       <DailyFormInputs
         schedule={schedule}
         setSchedule={setSchedule}
         dayObject={schedule.tuesday}
-        day="Tuesday"
+        day="Tues"
       />
       <DailyFormInputs
         schedule={schedule}
         setSchedule={setSchedule}
         dayObject={schedule.wednesday}
-        day="Wednesday"
+        day="Weds"
       />
       <DailyFormInputs
         schedule={schedule}
         setSchedule={setSchedule}
         dayObject={schedule.thursday}
-        day="Thursday"
+        day="Thurs"
       />
       <DailyFormInputs
         schedule={schedule}
         setSchedule={setSchedule}
         dayObject={schedule.friday}
-        day="Friday"
+        day="Fri"
       />
       <DailyFormInputs
         schedule={schedule}
         setSchedule={setSchedule}
         dayObject={schedule.saturday}
-        day="Saturday"
+        day="Sat"
       />
       <div>
         <button
