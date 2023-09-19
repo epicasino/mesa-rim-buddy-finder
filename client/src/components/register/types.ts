@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from 'react';
 
 interface iUserData {
   username: string;
@@ -46,5 +46,10 @@ export interface iRegisterConfirmProps {
   userData: iUserData;
   setUserData: Dispatch<SetStateAction<iUserData>>;
   lastQuestion: () => void;
-  submitForm: (e: React.FormEvent<HTMLButtonElement>) => void;
+  submitForm: (
+    e: React.FormEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLDivElement>
+  ) => void;
+  confirmError: {
+    message: string | null;
+  };
 }

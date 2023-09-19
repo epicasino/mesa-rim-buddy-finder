@@ -79,7 +79,7 @@ const typeDefs = `
   }
   type Query {
     users(page: Int): UserList
-    user(username: String, userId: String): User
+    user(username: String, userId: String, phone: String): User
     me: User
   }
   type Mutation {

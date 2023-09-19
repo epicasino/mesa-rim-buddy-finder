@@ -87,8 +87,8 @@ export const QUERY_USERS = gql`
 `;
 
 export const QUERY_USER = gql`
-  query User($userId: String, $username: String) {
-    user(userId: $userId, username: $username) {
+  query User($phone: String, $username: String, $userId: String) {
+    user(phone: $phone, username: $username, userId: $userId) {
       _id
       name
       username

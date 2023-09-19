@@ -49,6 +49,19 @@ export default function RegisterQuestions({
           return setError(true);
         }
       }
+      if (question === 4) {
+        const { data } = await getUser({
+          variables: {
+            phone: userDataObject,
+          },
+        });
+
+        if (!data.user) {
+          setError(false);
+          return nextQuestion(e);
+        }
+        return setError(true);
+      }
       setError(false);
       return nextQuestion(e);
     }
@@ -71,7 +84,9 @@ export default function RegisterQuestions({
             ? 'email'
             : 'text'
         }
-        className="w-1/4 text-4xl text-center m-5 rounded"
+        className={`xs:w-1/2 xs:text-2xl md:w-1/4 md:text-4xl text-center m-5 rounded ${
+          userError && 'border-red-500 focus:border-blue-400'
+        }`}
         placeholder={placeholder}
         value={userDataObject}
         onChange={(e) => {
@@ -85,7 +100,7 @@ export default function RegisterQuestions({
               : question === 4
               ? {
                   ...userData,
-                  phone: e.target.value,
+                  phone: e.target.value.trim().replace(/\D/g, ''),
                 }
               : question === 5
               ? { ...userData, email: e.target.value }
@@ -93,7 +108,6 @@ export default function RegisterQuestions({
 
           setUserData(object);
         }}
-        // Buggy...
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             e.preventDefault();
@@ -101,22 +115,6 @@ export default function RegisterQuestions({
           }
         }}
       />
-
-      {userError && (
-        <div>
-          <h5>
-            {question === 2
-              ? `Username is invalid/taken!`
-              : 'Please input a value!'}
-          </h5>
-        </div>
-      )}
-
-      {profanity && (
-        <div>
-          <h5>Please, no profanity.</h5>
-        </div>
-      )}
 
       <div className="question-boxes inline-flex">
         <button
@@ -126,7 +124,6 @@ export default function RegisterQuestions({
               : ''
           }`}
           disabled={question <= 1 ? true : false}
-          // For some reason, when password check fails, if user fails it again, lastQuestion function will trigger, and will go back to the previous question.
           onClick={(e) => {
             e.preventDefault();
             lastQuestion();
@@ -142,6 +139,26 @@ export default function RegisterQuestions({
         >
           Next
         </button>
+      </div>
+
+      <div className="errors mt-5">
+        {userError && (
+          <div>
+            <h5>
+              {question === 2
+                ? `Username is invalid/taken!`
+                : question === 4
+                ? `Phone # is taken!`
+                : 'Please input a value!'}
+            </h5>
+          </div>
+        )}
+
+        {profanity && (
+          <div>
+            <h5>Please, no profanity.</h5>
+          </div>
+        )}
       </div>
     </>
   );
