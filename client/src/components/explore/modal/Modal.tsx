@@ -28,7 +28,7 @@ export default function Modal({
   // console.log(data)
   const userInfo: iUserModal = data?.user || {};
 
-  // console.log(userInfo);
+  console.log(userInfo);
 
   return (
     <dialog

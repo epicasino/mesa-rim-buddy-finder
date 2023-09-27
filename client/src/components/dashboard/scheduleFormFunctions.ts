@@ -43,7 +43,7 @@ export const toSchedule = (
 ) => {
   let scheduleObject;
 
-  if (day === 'Sunday') {
+  if (day === 'Sun') {
     scheduleObject = {
       sunday: {
         from: dayObject.from,
@@ -52,7 +52,7 @@ export const toSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Monday') {
+  } else if (day === 'Mon') {
     scheduleObject = {
       monday: {
         from: dayObject.from,
@@ -61,7 +61,7 @@ export const toSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Tuesday') {
+  } else if (day === 'Tues') {
     scheduleObject = {
       tuesday: {
         from: dayObject.from,
@@ -70,7 +70,7 @@ export const toSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Wednesday') {
+  } else if (day === 'Weds') {
     scheduleObject = {
       wednesday: {
         from: dayObject.from,
@@ -79,7 +79,7 @@ export const toSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Thursday') {
+  } else if (day === 'Thurs') {
     scheduleObject = {
       thursday: {
         from: dayObject.from,
@@ -88,7 +88,7 @@ export const toSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Friday') {
+  } else if (day === 'Fri') {
     scheduleObject = {
       friday: {
         from: dayObject.from,
@@ -97,7 +97,7 @@ export const toSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Saturday') {
+  } else if (day === 'Sat') {
     scheduleObject = {
       saturday: {
         from: dayObject.from,
@@ -116,7 +116,7 @@ export const fromSchedule = (
 ) => {
   let scheduleObject;
 
-  if (day === 'Sunday') {
+  if (day === 'Sun') {
     scheduleObject = {
       sunday: {
         from: e.target.value,
@@ -125,7 +125,7 @@ export const fromSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Monday') {
+  } else if (day === 'Mon') {
     scheduleObject = {
       monday: {
         from: e.target.value,
@@ -134,7 +134,7 @@ export const fromSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Tuesday') {
+  } else if (day === 'Tues') {
     scheduleObject = {
       tuesday: {
         from: e.target.value,
@@ -143,7 +143,7 @@ export const fromSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Wednesday') {
+  } else if (day === 'Weds') {
     scheduleObject = {
       wednesday: {
         from: e.target.value,
@@ -152,7 +152,7 @@ export const fromSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Thursday') {
+  } else if (day === 'Thurs') {
     scheduleObject = {
       thursday: {
         from: e.target.value,
@@ -161,7 +161,7 @@ export const fromSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Friday') {
+  } else if (day === 'Fri') {
     scheduleObject = {
       friday: {
         from: e.target.value,
@@ -170,7 +170,7 @@ export const fromSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Saturday') {
+  } else if (day === 'Sat') {
     scheduleObject = {
       saturday: {
         from: e.target.value,
@@ -189,7 +189,7 @@ export const unavailableSchedule = (
 ) => {
   let scheduleObject;
 
-  if (day === 'Sunday') {
+  if (day === 'Sun') {
     scheduleObject = {
       sunday: {
         from: dayObject.from,
@@ -198,7 +198,7 @@ export const unavailableSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Monday') {
+  } else if (day === 'Mon') {
     scheduleObject = {
       monday: {
         from: dayObject.from,
@@ -207,7 +207,7 @@ export const unavailableSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Tuesday') {
+  } else if (day === 'Tues') {
     scheduleObject = {
       tuesday: {
         from: dayObject.from,
@@ -216,7 +216,7 @@ export const unavailableSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Wednesday') {
+  } else if (day === 'Weds') {
     scheduleObject = {
       wednesday: {
         from: dayObject.from,
@@ -225,7 +225,7 @@ export const unavailableSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Thursday') {
+  } else if (day === 'Thurs') {
     scheduleObject = {
       thursday: {
         from: dayObject.from,
@@ -234,7 +234,7 @@ export const unavailableSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Friday') {
+  } else if (day === 'Fri') {
     scheduleObject = {
       friday: {
         from: dayObject.from,
@@ -243,7 +243,7 @@ export const unavailableSchedule = (
       },
     };
     return scheduleObject;
-  } else if (day === 'Saturday') {
+  } else if (day === 'Sat') {
     scheduleObject = {
       saturday: {
         from: dayObject.from,
