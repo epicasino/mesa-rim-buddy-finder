@@ -23,7 +23,7 @@ export default function DailyFormInputs({
           });
         }}
         defaultValue={dayObject.from ? dayObject.from : ''}
-        disabled={dayObject.unavailable ? true : false}
+        disabled={dayObject.unavailable}
       >
         <option disabled value={''}>
           From:
@@ -56,7 +56,7 @@ export default function DailyFormInputs({
           });
         }}
         defaultValue={dayObject.to ? dayObject.to : 'To:'}
-        disabled={dayObject.unavailable ? true : false}
+        disabled={dayObject.unavailable}
       >
         <option disabled>To:</option>
         <option value={'6 AM'}>6 AM</option>
@@ -82,11 +82,14 @@ export default function DailyFormInputs({
           type="checkbox"
           checked={dayObject.unavailable}
           onChange={(e) => {
-            const toScheduleObject = unavailableSchedule(e, day, dayObject);
-
+            const unavailableScheduleObject = unavailableSchedule(
+              e,
+              day,
+              dayObject
+            );
             setSchedule({
               ...schedule,
-              ...toScheduleObject,
+              ...unavailableScheduleObject,
             });
           }}
         />
