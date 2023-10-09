@@ -1,7 +1,8 @@
 import { iUserDataForm } from './types';
 import { useState } from 'react';
 import { ADD_INFO } from '../../utils/mutations';
-import { useMutation } from '@apollo/client';
+import { useMutation, useLazyQuery } from '@apollo/client';
+import { QUERY_USER } from '../../utils/queries';
 import { hasBannedWords } from 'banned-words-spotter';
 
 export default function AccountInfoForm({ userData }: iUserDataForm) {
@@ -10,6 +11,8 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
   const [updateError, setUpdatedError] = useState<{ message: unknown }>({
     message: '',
   });
+
+  const [getUser] = useLazyQuery(QUERY_USER, { fetchPolicy: 'network-only' });
 
   // console.log(formInput);
 
@@ -37,6 +40,17 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
       ) {
         throw 'Pronouns Invalid';
       }
+
+      const phoneCheck = await getUser({
+        variables: { phone: formInputRest.phone },
+      }).then((res) => res.data);
+
+      // console.log(phoneCheck);
+
+      if (phoneCheck.user && phoneCheck.user?._id !== userData._id) {
+        throw 'Phone # Taken';
+      }
+
       const updatedInfo = await addInfo({
         variables: { userInfo: { ...formInputRest } },
       });
@@ -63,6 +77,9 @@ export default function AccountInfoForm({ userData }: iUserDataForm) {
         )}
         {updateError.message === 'Pronouns Invalid' && (
           <h5>ERROR: Pronouns invalid!</h5>
+        )}
+        {updateError.message === 'Phone # Taken' && (
+          <h5>ERROR: Phone Number Already Taken!</h5>
         )}
       </header>
       <div className="flex gap-2 justify-center items-center col-span-2 flex-col">
