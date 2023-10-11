@@ -23,7 +23,7 @@ export default function Dashboard() {
             <h1>Loading...</h1>
           ) : (
             <>
-              <header className='my-8'>
+              <header className="my-8">
                 <h1>Hello, {userData.username}!</h1>
                 <h5>Here's your account details...</h5>
               </header>
