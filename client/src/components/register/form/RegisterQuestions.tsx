@@ -43,7 +43,8 @@ export default function RegisterQuestions({
         return setError(true);
       }
       if (question === 3) {
-        const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        const regex =
+          /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d:])([^\s]){8,}$/;
         if (!regex.test(userDataObject)) {
           setUserData({ ...userData, password: '' });
           return setError(true);
@@ -149,7 +150,7 @@ export default function RegisterQuestions({
                 ? `Username is invalid/taken!`
                 : question === 4
                 ? `Phone # is taken!`
-                : 'Please input a value!'}
+                : 'Please input a valid value!'}
             </h5>
           </div>
         )}
