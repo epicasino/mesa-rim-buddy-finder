@@ -19,7 +19,7 @@
 
 ## Installation
 
-**Live Deployment on Heroku! [Click here for live deployment](https://mesa-rim-buddy-finder.onrender.com)**
+**Live Deployment on Render! [Click here for live deployment](https://mesa-rim-buddy-finder.onrender.com)**
 
 ## Usage
 
