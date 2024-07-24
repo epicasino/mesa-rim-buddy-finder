@@ -1,4 +1,4 @@
-# [Mesa Rim Buddy Finder!](https://mesa-rim-ec17e5be81fd.herokuapp.com/)
+# [Mesa Rim Buddy Finder!](https://mesa-rim-buddy-finder.onrender.com)
 
 ![GitHub top language](https://img.shields.io/github/languages/top/epicasino/mesa-rim-buddy-finder)
 ![GitHub language count](https://img.shields.io/github/languages/count/epicasino/mesa-rim-buddy-finder)
@@ -19,7 +19,7 @@
 
 ## Installation
 
-**Live Deployment on Heroku! [Click here for live deployment](https://mesa-rim-ec17e5be81fd.herokuapp.com/)**
+**Live Deployment on Heroku! [Click here for live deployment](https://mesa-rim-buddy-finder.onrender.com)**
 
 ## Usage
 
